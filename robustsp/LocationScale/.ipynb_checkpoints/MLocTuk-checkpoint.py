@@ -16,22 +16,14 @@ mu_hat = arg min_mu SUM_i rho_TUK(y_i - mu)
 '''
 import numpy as np
 
-#from ..AuxiliaryFunctions.madn import madn
-#from ..AuxiliaryFunctions.wtuk import wtuk
-
-
-import sys
-sys.path.append('\AuxiliaryFunctions')
-
 from robustsp.AuxiliaryFunctions.madn import madn
-from wtuk import wtuk
+from robustsp.AuxiliaryFunctions.wtuk import wtuk
 
 def MLocTUK(y,c=4.685, max_iters = 1000, tol_err = 1e-5):
     y = np.asarray(y) # ensure that y is a ndarray
-    # computes the normalized median absolute deviation estimate of scale
-    const = 1.20112 if np.iscomplexobj(y) else 1.4815
+
     # previously computed scale estimate
-    sigma_0 = const*np.median(abs(y-np.median(y))) # madn(y)
+    sigma_0 = madn(y)
     
     # initial robust location estimate 
     mu_n = np.median(y);

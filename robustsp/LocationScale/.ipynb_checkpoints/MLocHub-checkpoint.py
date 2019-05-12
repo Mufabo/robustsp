@@ -17,20 +17,15 @@ mu_hat = arg min_mu SUM_i rho_HUB(y_i - mu)
            mu_hat: Hbers's M-estimate of location
 '''
 import numpy as np
-import sys
-sys.path.append('\AuxiliaryFunctions')
-
-import AuxiliaryFunctions.madn
-from whub import whub
+from robustsp.AuxiliaryFunctions.madn import madn
+from robustsp.AuxiliaryFunctions.whub import whub
 
 def MLocHUB(y,c=1.345, max_iters = 1000, tol_err = 1e-5):
 
     y = np.asarray(y) # ensure that y is a ndarray
     
     # previously computed scale estimate
-    const = 1.20112 if np.iscomplexobj(y) else 1.4815
-    sigma_0 = const*np.median(abs(y-np.median(y))) # madn(y)
-    
+    sigma_0 = madn(y)
     # initial robust location estimate 
     mu_n = np.median(y);
     # computes huber weights

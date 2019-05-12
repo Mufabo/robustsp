@@ -2,11 +2,8 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
-import sys
-sys.path.append('..')
-
-from MLocTuk import *
-from MLocHub import *
+from robustsp.LocationScale.MLocTuk import *
+from robustsp.LocationScale.MLocHub import *
 
 # fix seed of random number generator for reproducibility
 random.seed(2)
@@ -39,7 +36,7 @@ c = 1.3415
 SC_hub = np.zeros(len(delta_x))
 mu_hat = MLocHUB(x_N_minus1,c)
 for ii in range(len(delta_x)):
-    SC_mean[ii] = N*(MLocHUB(np.append(x_N_minus1,delta_x[ii])) 
+    SC_hub[ii] = N*(MLocHUB(np.append(x_N_minus1,delta_x[ii])) 
                      - mu_hat)  
     
 # sensitivity curve for Tukey's location estimator
@@ -47,7 +44,7 @@ c = 4.68
 SC_tuk = np.zeros(len(delta_x))
 mu_hat = MLocTUK(x_N_minus1,c)
 for ii in range(len(delta_x)):
-    SC_mean[ii] = N*(MLocTUK(np.append(x_N_minus1,delta_x[ii])) 
+    SC_tuk[ii] = N*(MLocTUK(np.append(x_N_minus1,delta_x[ii])) 
                      - mu_hat)    
     
 
