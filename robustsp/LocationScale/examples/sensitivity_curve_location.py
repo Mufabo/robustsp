@@ -2,8 +2,12 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
-from MLocTuk import MLocTUK
-from MLocHub import MLocHUB
+import sys
+sys.path.append('..')
+
+import MLocTuk
+from MLocTuk import * 
+from MLocHub import *
 
 # fix seed of random number generator for reproducibility
 random.seed(2)

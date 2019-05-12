@@ -5,7 +5,7 @@ location, i.e.,
 mu_hat = arg min_mu SUM_i rho_TUK(y_i - mu)
 
 
-    INPUTS: 
+   INPUTS: 
            y: real valued data vector of size N x 1
            c: tuning constant c>=0 . default = 4.685
            max_iters: Number of iterations. default = 1000
@@ -15,8 +15,15 @@ mu_hat = arg min_mu SUM_i rho_TUK(y_i - mu)
            mu_hat: Tukey's M-estimate of location
 '''
 import numpy as np
-from codes.AuxiliaryFunctions.madn import madn
-from codes.AuxiliaryFunctions.wtuk import wtuk
+
+#from ..AuxiliaryFunctions.madn import madn
+#from ..AuxiliaryFunctions.wtuk import wtuk
+
+import sys
+sys.path.append('.../AuxiliaryFunctions/')
+
+from AuxiliaryFunctions.madn import madn
+from wtuk import wtuk
 
 def MLocTUK(y,c=4.685, max_iters = 1000, tol_err = 1e-5):
     y = np.asarray(y) # ensure that y is a ndarray

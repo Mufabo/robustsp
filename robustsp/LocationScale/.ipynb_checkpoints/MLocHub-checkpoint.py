@@ -17,8 +17,9 @@ mu_hat = arg min_mu SUM_i rho_HUB(y_i - mu)
            mu_hat: Hbers's M-estimate of location
 '''
 import numpy as np
-from codes.AuxiliaryFunctions.madn import madn
-from codes.AuxiliaryFunctions.whub import whub
+import sys
+sys.path.append('/robustsp/AuxiliaryFunctions/')
+from robustsp.auxiliaryfunctions import madn, whub
 
 def MLocHUB(y,c=1.345, max_iters = 1000, tol_err = 1e-5):
 
