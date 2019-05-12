@@ -1,6 +1,6 @@
 # robustsp
 
-This document contains the functions that are currently available in the RobustSP toolbox: a Matlab toolbox for robust signal processing [[1]](https://github.com/RobustSP/toolbox) in Python. The toolbox can be freely used for non-commercial use only. Please make appropriate references to the book:
+This package contains the functions that are currently available in the RobustSP toolbox: a Matlab toolbox for robust signal processing [[1]](https://github.com/RobustSP/toolbox) in Python. The toolbox can be freely used for non-commercial use only. Please make appropriate references to the book:
 
 Zoubir, A. M., Koivunen, V., Ollila, E., and Muma, M. Robust Statistics for Signal Processing Cambridge University Press, 2018.
 
