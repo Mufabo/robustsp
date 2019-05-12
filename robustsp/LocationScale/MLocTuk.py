@@ -19,10 +19,11 @@ import numpy as np
 #from ..AuxiliaryFunctions.madn import madn
 #from ..AuxiliaryFunctions.wtuk import wtuk
 
-import sys
-sys.path.append('.../AuxiliaryFunctions/')
 
-from AuxiliaryFunctions.madn import madn
+import sys
+sys.path.append('\AuxiliaryFunctions')
+
+import AuxiliaryFunctions.madn
 from wtuk import wtuk
 
 def MLocTUK(y,c=4.685, max_iters = 1000, tol_err = 1e-5):

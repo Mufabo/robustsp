@@ -5,8 +5,7 @@ import matplotlib.pyplot as plt
 import sys
 sys.path.append('..')
 
-import MLocTuk
-from MLocTuk import * 
+from MLocTuk import *
 from MLocHub import *
 
 # fix seed of random number generator for reproducibility

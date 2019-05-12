@@ -18,8 +18,10 @@ mu_hat = arg min_mu SUM_i rho_HUB(y_i - mu)
 '''
 import numpy as np
 import sys
-sys.path.append('/robustsp/AuxiliaryFunctions/')
-from robustsp.auxiliaryfunctions import madn, whub
+sys.path.append('\AuxiliaryFunctions')
+
+import AuxiliaryFunctions.madn
+from whub import whub
 
 def MLocHUB(y,c=1.345, max_iters = 1000, tol_err = 1e-5):
 
