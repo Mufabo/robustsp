@@ -1,4 +1,4 @@
-from setuptools import setup, findpackages
+from setuptools import setup, find_packages
 
 setup(name='robustsp',
           version='0.1',
@@ -7,5 +7,5 @@ setup(name='robustsp',
           author='M. Fatih Bostanci',
           author_email='fatih.bostanci@hotmail.de',
           license='MIT',
-          packages= findpackages(),#['robustsp'],
+          packages= find_packages(),#['robustsp'],
           zip_safe=False)
