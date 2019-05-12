@@ -1,4 +1,9 @@
 from setuptools import setup, find_packages
+import sys
+
+if sys.version_info.major != 3:
+    print('This Python is only compatible with Python 3, but you are running '
+          'Python {}. The installation will likelyfail.'.format(sys.version_info.major))
 
 setup(name='robustsp',
           version='0.1',
@@ -8,4 +13,8 @@ setup(name='robustsp',
           author_email='fatih.bostanci@hotmail.de',
           license='MIT',
           packages= find_packages(),#['robustsp'],
+          install_requires=[
+            'numpy',
+            'matplotlib'
+            ]
           zip_safe=False)
