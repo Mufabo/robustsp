@@ -1,7 +1,8 @@
 import random
 import numpy as np
 import matplotlib.pyplot as plt
-
+import scipy.io
+from pathlib import Path
 from robustsp.LocationScale.MscaleTUK import *
 from robustsp.LocationScale.MscaleHUB import *
 from robustsp.AuxiliaryFunctions.madn import madn
@@ -20,41 +21,46 @@ delta_x = np.linspace(0,10,1000)
 
 # sensitivity curve for standard deviation
 SC_std = np.zeros(delta_x.shape)
-std_hat = np.std(x_N_minus1)
+std_hat = np.std(x_N_minus1, ddof=1) # 1.0551
+
 for ii in range(len(delta_x)):
-    SC_std[ii] = N*(np.std(np.append(x_N_minus1,delta_x[ii])) 
+    SC_std[ii] = N*(np.std(np.append(x_N_minus1,delta_x[ii]), ddof=1) 
                      - std_hat)
     
 # sensitivity curve for median absolute deviation
 # that does not coverge to IF
 SC_mad = np.zeros(delta_x.shape)
-std_hat = madn(x_N_minus1)
+std_hat = madn(x_N_minus1) # 0.8319
+
 for ii in range(len(delta_x)):
     SC_mad[ii] = N*(madn(np.append(x_N_minus1,delta_x[ii])) 
-                     - std_hat)  
+                     - std_hat) 
     
 # Sensitivity Curve for mean absolute deviation
 # around the median
 SC_mead = np.zeros(delta_x.shape)
-std_hat = np.mean(np.absolute(x_N_minus1-np.median(x_N_minus1)))
+std_hat = np.mean(np.abs(x_N_minus1-np.median(x_N_minus1))) # 0.7859
+
 for ii in range(len(delta_x)):
-    SC_mead[ii] = N*(np.mean(np.absolute(np.append(x_N_minus1, delta_x[ii])
+    SC_mead[ii] = N*(np.mean(np.abs(np.append(x_N_minus1, delta_x[ii])
                                          -np.median(x_N_minus1)))
                      -std_hat)
-
+    
 # Sensitivity Curve for Huber's scale estimate
-c =  1.3415
-SC_hub = np.zeros(delta_x.shape)
-std_hat = MscaleHUB(x_N_minus1,c);
+c =  1.3415 
+SC_hub = np.zeros(len(delta_x))
+std_hat = MscaleHUB(x_N_minus1,c,path='u.mat')
 for ii in range(len(delta_x)):
-    SC_hub[ii] = N*(MscaleHUB(np.append(x_N_minus1, delta_x[ii]),c)-std_hat)
-
+    SC_hub[ii] = N*(MscaleHUB(np.append(x_N_minus1, delta_x[ii]),c,path='u.mat')
+                    -std_hat)
+    
 # Sensitivity Curve for Tukey's scale estimate
 c = 4.68 
 SC_tuk = np.zeros(delta_x.shape)
-std_hat = MscaleTUK(x_N_minus1,c)
+std_hat = MscaleTUK(x_N_minus1,c,path='u.mat') # Soll: 0.8772
+
 for ii in range(len(delta_x)):
-    SC_tuk[ii] = N*(MscaleTUK(np.append(x_N_minus1, delta_x[ii]),c)-std_hat)
+    SC_tuk[ii] = N*(MscaleTUK(np.append(x_N_minus1, delta_x[ii]),c,path='u.mat')-std_hat)
     
 plt.rcParams.update({'font.size': 18})
 

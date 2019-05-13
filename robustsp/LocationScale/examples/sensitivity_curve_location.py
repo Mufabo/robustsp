@@ -1,18 +1,24 @@
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.io
+from pathlib import Path
+from robustsp import *
 
-from robustsp.LocationScale.MLocTuk import *
-from robustsp.LocationScale.MLocHub import *
-
-# fix seed of random number generator for reproducibility
+#fix seed of random number generator for reproducibility
 random.seed(2)
 
 # Number of measurements
 N = 100
 
 # DC voltage in AWGN
-x_N_minus1 = np.random.randn(N-1,1)+5
+my_file = Path("x_N_minus1.mat")
+if my_file.is_file():
+    # Load matlab generated samples
+    x_N_minus1 = scipy.io.loadmat('x_N_minus1.mat',struct_as_record=False)
+    x_N_minus1 = x_N_minus1['x_N_minus1']
+else:
+    x_N_minus1 = np.random.randn(N-1,1)+5
 
 # outlier values
 delta_x = np.linspace(0,10,1000)
@@ -29,25 +35,24 @@ SC_med = np.zeros(delta_x.shape)
 mu_hat = np.median(x_N_minus1)
 for ii in range(len(delta_x)):
     SC_med[ii] = N*(np.median(np.append(x_N_minus1,delta_x[ii])) 
-                     - mu_hat)    
+                     - mu_hat)
 
 # sensitivity curve for Huber's location estimator
 c = 1.3415
-SC_hub = np.zeros(len(delta_x))
+SC_hub = np.zeros(delta_x.shape)
 mu_hat = MLocHUB(x_N_minus1,c)
 for ii in range(len(delta_x)):
     SC_hub[ii] = N*(MLocHUB(np.append(x_N_minus1,delta_x[ii])) 
-                     - mu_hat)  
-    
+                     - mu_hat)
+
 # sensitivity curve for Tukey's location estimator
 c = 4.68
-SC_tuk = np.zeros(len(delta_x))
+SC_tuk = np.zeros(delta_x.shape)
 mu_hat = MLocTUK(x_N_minus1,c)
 for ii in range(len(delta_x)):
     SC_tuk[ii] = N*(MLocTUK(np.append(x_N_minus1,delta_x[ii])) 
-                     - mu_hat)    
+                     - mu_hat)
     
-
 plt.rcParams.update({'font.size': 18})
 
 plt.plot(delta_x,SC_mean-np.mean(SC_mean), label ='mean', linewidth=2.0)
