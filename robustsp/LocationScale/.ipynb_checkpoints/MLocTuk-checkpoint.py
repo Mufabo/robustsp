@@ -29,7 +29,7 @@ def MLocTUK(y,c=4.685, max_iters = 1000, tol_err = 1e-5):
     mu_n = np.median(y);
     # computes tukey weights
     wtuk = lambda absx,cl: np.square(1-np.square(absx/cl)) * (absx<=cl)
-    # dim error links 100, rechts 99,
+
     for n in range(max_iters+1):
         w_n = wtuk(np.absolute(y-mu_n)/sigma_0,c) # compute weights
         mu_n_plus1 = np.sum(w_n*y)/(np.sum(w_n)) # compute weighted average

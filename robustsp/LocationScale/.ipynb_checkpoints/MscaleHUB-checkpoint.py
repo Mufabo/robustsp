@@ -36,9 +36,9 @@ def MscaleHUB(y,c=1.345, max_iters = 1000, tol_err = 1e-5):
     delta = np.mean(rhohub(u,c))
     
     for n in range(max_iters+1):
-        w_n = whub(np.absolute(y)/sigma_n,c)
+        w_n = whub(np.abs(y)/sigma_n,c)
         sigma_n_plus1 = np.sqrt(1/(N*delta)*np.sum(w_n * np.square(y)))
-        if np.absolute(sigma_n_plus1 / (sigma_n -1)) > tol_err:
+        if np.abs(sigma_n_plus1 / (sigma_n -1)) > tol_err:
             sigma_n = sigma_n_plus1
             n = n+1
         else:
