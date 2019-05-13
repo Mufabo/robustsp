@@ -1,8 +1,6 @@
 import random
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.io
-from pathlib import Path
 from robustsp import *
 
 #fix seed of random number generator for reproducibility
@@ -12,13 +10,7 @@ random.seed(2)
 N = 100
 
 # DC voltage in AWGN
-my_file = Path("x_N_minus1.mat")
-if my_file.is_file():
-    # Load matlab generated samples
-    x_N_minus1 = scipy.io.loadmat('x_N_minus1.mat',struct_as_record=False)
-    x_N_minus1 = x_N_minus1['x_N_minus1']
-else:
-    x_N_minus1 = np.random.randn(N-1,1)+5
+x_N_minus1 = np.random.randn(N-1,1)+5
 
 # outlier values
 delta_x = np.linspace(0,10,1000)
