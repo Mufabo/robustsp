@@ -9,7 +9,8 @@ Zoubir, A. M., Koivunen, V., Ollila, E., and Muma, M. Robust Statistics for Sign
 ## Requirements
 
 Python 3.
-Any other required Python Package (numpy, matplotlib) should be installed on the fly if necessary
+numpy
+matplotlib
 
 ## Installation
 
