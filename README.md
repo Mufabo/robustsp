@@ -8,9 +8,9 @@ Zoubir, A. M., Koivunen, V., Ollila, E., and Muma, M. Robust Statistics for Sign
 
 ## Requirements
 
-Python 3.
-numpy
-matplotlib
+* Python 3
+* numpy
+* matplotlib
 
 ## Installation
 
