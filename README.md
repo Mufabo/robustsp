@@ -38,13 +38,12 @@ If you would like to have the source files of the package easily accessible.
 [Link to Matlab code](https://github.com/RobustSP/toolbox/blob/master/codes/01_LocationScale/examples/sensitivity_curve_location.m)
 
 ```python
-import random
 import numpy as np
 import matplotlib.pyplot as plt
 from robustsp import *
 
 #fix seed of random number generator for reproducibility
-random.seed(2)
+np.random.seed(2)
 
 # Number of measurements
 N = 100
