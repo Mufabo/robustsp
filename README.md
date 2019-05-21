@@ -11,6 +11,9 @@ Zoubir, A. M., Koivunen, V., Ollila, E., and Muma, M. Robust Statistics for Sign
 * Python 3
 * numpy
 * matplotlib
+* scipy
+
+The required packages can be installed via console by ```pip install name``` where name is the package name.
 
 ## Installation
 
