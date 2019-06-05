@@ -16,8 +16,10 @@ setup(name='robustsp',
           author_email='fatih.bostanci@hotmail.de',
           license='MIT',
           packages= find_packages(),#['robustsp'],
+          package_data = {'robustsp': ['data/*.mat']},
           install_requires=[
             'numpy',
-            'matplotlib'
+            'matplotlib',
+            'scipy'
             ],
           zip_safe=False)
