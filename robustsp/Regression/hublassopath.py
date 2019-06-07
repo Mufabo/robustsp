@@ -69,7 +69,7 @@ def hublassopath(yx,Xx,c=None,intcpt=True,eps=10**-3,L=120,reltol=1e-5,printitn=
     sig[0] = sig0
                             
     for jj in range(L):
-        B[:,jj+1], sig[jj+1] = rsp.hublasso(y,X,c,lamgrid[jj+1],B[:,jj],sig[jj],reltol,printitn)
+        B[:,jj+1], sig[jj+1],_ = rsp.hublasso(y,X,lamgrid[jj+1],B[:,jj],c,sig[jj],reltol,printitn)
     
     B[np.abs(B)<5e-8]=0
     DF = np.sum(np.abs(B)!=0,axis=0)
@@ -78,8 +78,10 @@ def hublassopath(yx,Xx,c=None,intcpt=True,eps=10**-3,L=120,reltol=1e-5,printitn=
     stats = {}
     stats['gBIC'] = 2*n*np.log(sig*con) + DF *np.log(n) if n>p else None
     
-    B /= sdX
+    B = B / sdX[:,None]
                             
     B0 = locy-meanX@B if intcpt else None
     stats['sigma'] = sig
     stats['Lambda'] = lamgrid
+    
+    return B,B0,stats
