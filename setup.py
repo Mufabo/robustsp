@@ -21,6 +21,6 @@ setup(name='robustsp',
             'numpy',
             'matplotlib',
             'scipy',
-            'pkg_resources'
+            'setuptools'
             ],
           zip_safe=False)
