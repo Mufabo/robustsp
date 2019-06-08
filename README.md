@@ -103,6 +103,10 @@ plt.legend()
 plt.show()
 ```
 
+### Regression with and without Outlier for Prostata Analysis
+[Link to executed colab notebook](https://colab.research.google.com/drive/1aiHm7ykITroJrfeZvGkDblQB9FwnFKTt)
+
+[Linkt ot Matlab Code (Note: Plot different than Python version, Results equal up to at least 3 decimals)](https://github.com/RobustSP/toolbox/blob/master/codes/02_Regression/examples/prost_analysis.m)
 ```python
 import robustsp as rsp
 import numpy as np
@@ -278,7 +282,3 @@ rsp.prostate_plot_setup(xx,Bhub2,locs,loc_x,names)
 fig2.show()
 ```
 
-### Regression with and without Outlier for Prostata Analysis
-[Link to executed colab notebook](https://colab.research.google.com/drive/1aiHm7ykITroJrfeZvGkDblQB9FwnFKTt)
-
-[Linkt ot Matlab Code (Note: Plot different than Python version, Results equal up to at least 3 decimals)](https://github.com/RobustSP/toolbox/blob/master/codes/02_Regression/examples/prost_analysis.m)
