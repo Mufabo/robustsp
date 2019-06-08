@@ -111,7 +111,7 @@ plt.show()
 import robustsp as rsp
 import numpy as np
 import matplotlib
-%matplotlib inline
+#%matplotlib inline
 import matplotlib.pyplot as plt
 import scipy.io
 import pkg_resources
