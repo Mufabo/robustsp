@@ -26,12 +26,11 @@
 import numpy as np
 from robustsp.Regression.enet import enet
 
-def enetpath(y,X,alpha=1,L=120,eps=10**-3,intcpt=True,printitn=0):
+def enetpath(yx,Xx,alpha=1,L=120,eps=10**-3,intcpt=True,printitn=0):
 
     # ensure inputs are ndarrays
-    X = np.asarray(X)
-    Xc = np.copy(X)
-    y = np.asarray(y)
+    Xc = np.copy(np.asarray(Xx))
+    y = np.copy(np.asarray(yx))
     if len(y.shape) == 2: y = y.flatten()
     n,p = Xc.shape
 
@@ -41,21 +40,22 @@ def enetpath(y,X,alpha=1,L=120,eps=10**-3,intcpt=True,printitn=0):
         meany = np.mean(y)
         Xc -= meanX
         y -= meany
-
+        
+        
     if printitn > 0:
         print('enetpath: using alpha = %.1f \n' % alpha)
 
     sdX = np.sqrt(np.sum(Xc*np.conj(Xc),axis=0)) 
     Xc /= sdX
-
+    
     lam0 = np.linalg.norm(Xc.T @ y,np.inf)/alpha # smallest penalty value giving zero solution
-
+    
     lamgrid = eps**(np.arange(0,L+1,1)/L) * lam0 # grid of penalty values
 
     B = np.zeros([p,L+1])
 
     for jj in range(L):
-        B[:,jj+1], b = enet(y,Xc,B[:,jj], lamgrid[jj], alpha, printitn)
+        B[:,jj+1], b = enet(y,Xc,B[:,jj], lamgrid[jj+1], alpha, printitn)
 
     B[np.abs(B) < 5e-8] = 0
 

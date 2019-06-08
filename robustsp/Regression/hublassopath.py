@@ -61,7 +61,7 @@ def hublassopath(yx,Xx,c=None,intcpt=True,eps=10**-3,L=120,reltol=1e-5,printitn=
                             
     # compute the smallest penalty value yielding a zero solution
     yc = rsp.psihub(y/sig0,c)*sig0
-    lam0 = np.max(X.T@yc) 
+    lam0 = np.max(np.abs(X.T@yc)) 
     
     lamgrid = eps**(np.arange(L+1)/L)*lam0
     B = np.zeros((p,L+1))
@@ -69,7 +69,7 @@ def hublassopath(yx,Xx,c=None,intcpt=True,eps=10**-3,L=120,reltol=1e-5,printitn=
     sig[0] = sig0
                             
     for jj in range(L):
-        B[:,jj+1], sig[jj+1],_ = rsp.hublasso(y,X,lamgrid[jj+1],B[:,jj],c,sig[jj],reltol,printitn)
+        B[:,jj+1], sig[jj+1] = rsp.hublasso(y,X,lamgrid[jj+1],B[:,jj],sig[jj],c,reltol,printitn)
     
     B[np.abs(B)<5e-8]=0
     DF = np.sum(np.abs(B)!=0,axis=0)

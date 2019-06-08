@@ -48,30 +48,28 @@ def hublasso(yx,Xx,lambd,b0=None,sig0=None,c=None,reltol=1e-5,printitn=0,iterMAX
         alpha = chi2.cdf(2*csq,4)+csq*(1-qn) # consistency factor for scale
 
     con = np.sqrt(n*alpha)
-    normb0 = scipy.linalg.norm(b0)
-    b0 = b0.astype(np.double)
+    normb0 = np.linalg.norm(b0)
+    b0 = b0.astype(np.longdouble)
     betaold = np.copy(b0)
 
     i = 0
     for _ in range(iterMAX):
         r = y-X@b0[:,np.newaxis].flatten()
+
         psires = rsp.psihub(r/sig0,c)*sig0
-        sig1 = scipy.linalg.norm(psires)/con
+        sig1 = np.linalg.norm(psires)/con
 
         crit2 = np.abs(sig0-sig1)
 
         for jj in range(p):
             psires = rsp.psihub(r/sig1,c)*sig1 # Update the pseudo-residual
+
             b0[jj] = rsp.SoftThresh(b0[jj]+X[:,jj].T @ psires,lambd)
             r+=X[:,jj]*(betaold[jj]-b0[jj])
 
-        normb = scipy.linalg.norm(b0)
 
-        crit = scipy.sqrt(scipy.power(normb0,2) \
-                          + scipy.power(normb,2) \
-                          -2*scipy.real(\
-                                        betaold@b0))\
-        /normb
+        normb = np.linalg.norm(b0)
+        crit = np.sqrt(normb0**2 + normb**2 -2*np.real(betaold@b0))/normb
 
         if printitn > 0:
             pass
@@ -83,9 +81,17 @@ def hublasso(yx,Xx,lambd,b0=None,sig0=None,c=None,reltol=1e-5,printitn=0,iterMAX
 
         sig0 = sig1
         betaold = np.copy(b0)
-        normb0 = np.copy(normb)
+        normb0 = normb
+
         i+=1
-        
+
+        if printitn > 0:
+            pass
+            '''
+            r = (y-X@b0)/sig1
+            objnew = (sig1)*np.sum(rsp.rhofun(r,c)+())
+            '''
+          
     if printitn > 0:
         b0[np.abs(b0)<5e-9]=0
         r = y- X@b0
@@ -98,4 +104,4 @@ def hublasso(yx,Xx,lambd,b0=None,sig0=None,c=None,reltol=1e-5,printitn=0,iterMAX
         print('lam = %.4f it = %d norm(FPeq1)= %.12f abs(FPeq2)=%.12f\n' \
         % (lambd,i, np.linalg.norm(fpeq),sig1-np.linalg.norm(psires)/con))
         
-    return b0,sig0,psires
+    return b0,sig0
