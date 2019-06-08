@@ -23,8 +23,9 @@ from robustsp.Regression.ranklasso import ranklasso
 from robustsp.Regression.hublasso import hublasso
 from robustsp.Regression.hubreg import hubreg
 from robustsp.Regression.hublassopath import hublassopath
+from robustsp.Regression.prostate_plot_setup import prostate_plot_setup
 
-from robustsp.Regression.examples.prostate_plot_setup import prostate_plot_setup
+#from robustsp.Regression.examples.prostate_plot_setup import prostate_plot_setup
 
 from robustsp.Covariance.spatmed import spatmed
 
