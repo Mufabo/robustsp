@@ -19,7 +19,9 @@ from robustsp.Regression.elemfits import elemfits
 from robustsp.Regression.ladlasso import ladlasso
 from robustsp.Regression.ladlassopath import ladlassopath
 from robustsp.Regression.ranklassopath import ranklassopath
+from robustsp.Regression.rankflassopath import rankflassopath
 from robustsp.Regression.ranklasso import ranklasso
+from robustsp.Regression.rankflasso import rankflasso
 from robustsp.Regression.hublasso import hublasso
 from robustsp.Regression.hubreg import hubreg
 from robustsp.Regression.hublassopath import hublassopath

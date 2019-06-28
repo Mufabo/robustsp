@@ -52,11 +52,12 @@ def enet(yx,Xx,betax,lambd,alpha=1,printitn=0, iterMAX = 1000):
         print('enet : using penalty lambda = %.5f \n' % lambd)
         
     for it in range(iterMAX):
-        for jj in range(p):            
+        for jj in range(p):
             beta[jj] = const * SoftThresh(beta[jj] + X[:,jj].T @ r, lam1)            
             r = r + X[:,jj] * (betaold[jj]-beta[jj])
-                       
-        normb = scipy.linalg.norm(beta)        
+                   
+        normb = scipy.linalg.norm(beta)
+        
         crit = cmath.sqrt(normb0**2 + normb**2 - 2*np.real(betaold.T @ beta))/normb if normb != 0 else np.inf
 
         if printitn != 0 and iter % printitn == 0:
