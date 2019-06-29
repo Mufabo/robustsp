@@ -27,8 +27,11 @@ from robustsp.Regression.hubreg import hubreg
 from robustsp.Regression.hublassopath import hublassopath
 from robustsp.Regression.prostate_plot_setup import prostate_plot_setup
 
+
+
 #from robustsp.Regression.examples.prostate_plot_setup import prostate_plot_setup
 
 from robustsp.Covariance.spatmed import spatmed
+from robustsp.Covariance.Mscat import Mscat
 
 import numpy as np
