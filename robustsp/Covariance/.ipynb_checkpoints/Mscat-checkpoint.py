@@ -47,7 +47,7 @@ def Mscat(X, loss, losspar=None,invCx=None,printitn=0,MAX_ITER = 1000,EPS = 1.0e
     realdata = np.isrealobj(X)
 
     # SCM initial start 
-    invC = np.linalg.pinv(X.T @ X / n) if invCx==None else np.copy(invCx) 
+    invC = np.linalg.pinv(X.conj().T @ X / n) if invCx==None else np.copy(invCx) 
 
     if loss=='Huber':
         ufun = lambda t,c: ((t<=c) + (c/t)*(t>c)) # weight function u(t)
@@ -58,7 +58,7 @@ def Mscat(X, loss, losspar=None,invCx=None,printitn=0,MAX_ITER = 1000,EPS = 1.0e
                 b = chi2.cdf(upar,p+2)+(upar/p)*(1-q) # consistency factor
             else:
                 upar = chi2.ppf(q,2*p)/2
-                b = chi2cdf(2*upar,2*(p+1))+(upar/p)*(1-q)
+                b = chi2.cdf(2*upar,2*(p+1))+(upar/p)*(1-q)
         else:
             raise ValueError('losspar is a real number in [0,1] and not %s for Huber-loss' % q)
         const = 1/(b*n)
@@ -85,7 +85,7 @@ def Mscat(X, loss, losspar=None,invCx=None,printitn=0,MAX_ITER = 1000,EPS = 1.0e
 
     for i in range(MAX_ITER):
         t = np.real(np.sum((X@invC)*np.conj(X),axis=1)) # norms
-        C = const* X.T @ (X * ufun(t,upar)[:,None])
+        C = const* X.conj().T @ (X * ufun(t,upar)[:,None])
         d = np.max(np.sum(np.abs(np.eye(p)-invC@C),axis=1))
 
         if printitn >0 and (i+1)%printitn == 0:
