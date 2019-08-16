@@ -28,7 +28,7 @@ from robustsp.Regression.hublassopath import hublassopath
 from robustsp.Regression.prostate_plot_setup import prostate_plot_setup
 
 from robustsp.RobustFiltering.asymmetric_tanh import asymmetric_tanh
-
+from robustsp.RobustFiltering.ekf_toa import ekf_toa
 #from robustsp.Regression.examples.prostate_plot_setup import prostate_plot_setup
 
 from robustsp.Covariance.spatmed import spatmed
