@@ -15,14 +15,14 @@ parameter['pnlos'] = [0, 0, 0, 0, 0.25]
 parameter['initial_sigma'] = [50, 50, 6, 6] # standard deviation for the initial state
 parameter['mc'] = 50 # number of monte carlo runs
 parameter['discardN'] = 100 # discard first N samples for calculating the error metrics
-parameter['grid'] = j1
+parameter['grid'] = 1
 parameter['Ts'] = 0.2 # sampling frequency
 parameter['A'] = [[1, 0, parameter['Ts'], 0],
                  [0, 1, 0, parameter['Ts']],
                  [0, 0, 1, 0],
                  [0, 0, 0, 1]]
 parameter['G'] = [parameter['Ts']**2/2*np.eye(2),parameter['Ts']*np.eye(2)]
-parameter['dim'] = paramert['BS'].shape(0)
+parameter['dim'] = len(parameter['BS'])
 parameter['numberBs'] = 'variable'
 parameter['noisemodel'] = 'GMM1' # noise model
 parameter['motionmodel'] = 'random-force' # state model
@@ -31,7 +31,7 @@ parameter['noiseStructure'] = 'Markov' # noise process model
 # graphical output
 parameter['figure'] = 1
 parameter['plot'] = 'mse'
-
+parameter['MarkovChain'] = np.zeros((parameter['M'],2,2))
 for ii in range(parameter['M']):
     if parameter['pnlos'][ii] == 0:
         parameter['MarkovChain'][ii]=[[1, 0],[1, 0]]
@@ -62,19 +62,19 @@ ekf['G'] = [parameter['Ts']**2 / 2*np.eye(2), parameter['Ts']*np.eye(2)]
 ekf['A'] = parameter['A']
 # initialisation
 ekf['X0'] = [30,0,4,10]
-ekf['P0'] = np.diag[parameter['initial_sigma']**2]
+ekf['P0'] = np.diag(np.array(parameter['initial_sigma'])**2)
 ekf['dim'] = parameter['dim']
 ekf['var_est'] = 0
 
 # robust ekf
 rekf = {}
-rekf['R'] = parameter['sigma_los']**2 * np.diag(np.ones[parameter['M']])
+rekf['R'] = parameter['sigma_los']**2 * np.diag(np.ones(parameter['M']))
 rekf['Q'] = parameter['sigma_v'] * np.eye(2)
 rekf['G'] = [parameter['Ts']**2 / 2*np.eye(2), parameter['Ts']*np.eye(2)]
 rekf['A'] = parameter['A']
 # intialisation
 rekf['X0'] = [30, 0, 4, 10]
-rekf['P0'] = np.diag(parameter['initial_sigma']**2)
+rekf['P0'] = np.diag(np.array(parameter['initial_sigma'])**2)
 rekf['dim'] = parameter['dim']
 
 # parameters M-estimator
