@@ -3,11 +3,11 @@ import scipy as sp
 
 parameter = {}
 parameter['N'] = 3000 # length of simulated trajectory
-parameter['BS'] = [[2000, 7000],
+parameter['BS'] = np.array([[2000, 7000],
                   [12000, 7000],
                   [7000, 12000],
                   [7000, 2000],
-                  [7000, 7000]]
+                  [7000, 7000]])
 
 parameter['M'] = len(parameter['BS']) # number of base stations
 parameter['start'] = [4300, 4300, 2,2] # mean starting position
@@ -17,12 +17,12 @@ parameter['mc'] = 50 # number of monte carlo runs
 parameter['discardN'] = 100 # discard first N samples for calculating the error metrics
 parameter['grid'] = 1
 parameter['Ts'] = 0.2 # sampling frequency
-parameter['A'] = [[1, 0, parameter['Ts'], 0],
+parameter['A'] =np.array([[1, 0, parameter['Ts'], 0],
                  [0, 1, 0, parameter['Ts']],
                  [0, 0, 1, 0],
-                 [0, 0, 0, 1]]
-parameter['G'] = [parameter['Ts']**2/2*np.eye(2),parameter['Ts']*np.eye(2)]
-parameter['dim'] = len(parameter['BS'])
+                 [0, 0, 0, 1]])
+parameter['G'] = np.vstack([parameter['Ts']**2/2*np.eye(2),parameter['Ts']*np.eye(2)])
+parameter['dim'] = len(parameter['BS'][0]) # dimension of positions, default is 2 
 parameter['numberBs'] = 'variable'
 parameter['noisemodel'] = 'GMM1' # noise model
 parameter['motionmodel'] = 'random-force' # state model
@@ -58,7 +58,7 @@ parameter['mc'] = 1
 ekf = {}
 ekf['R'] = parameter['sigma_los']**2 * np.diag(np.ones(parameter['M']))
 ekf['Q'] = parameter['sigma_v'] * np.eye(2)
-ekf['G'] = [parameter['Ts']**2 / 2*np.eye(2), parameter['Ts']*np.eye(2)]
+ekf['G'] = np.vstack([parameter['Ts']**2 / 2*np.eye(2), parameter['Ts']*np.eye(2)])
 ekf['A'] = parameter['A']
 # initialisation
 ekf['X0'] = [30,0,4,10]
@@ -70,7 +70,7 @@ ekf['var_est'] = 0
 rekf = {}
 rekf['R'] = parameter['sigma_los']**2 * np.diag(np.ones(parameter['M']))
 rekf['Q'] = parameter['sigma_v'] * np.eye(2)
-rekf['G'] = [parameter['Ts']**2 / 2*np.eye(2), parameter['Ts']*np.eye(2)]
+rekf['G'] = np.vstack([parameter['Ts']**2 / 2*np.eye(2), parameter['Ts']*np.eye(2)])
 rekf['A'] = parameter['A']
 # intialisation
 rekf['X0'] = [30, 0, 4, 10]
