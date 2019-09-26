@@ -33,6 +33,8 @@ from robustsp.RobustFiltering.ekf_toa import ekf_toa
 from robustsp.RobustFiltering.examples.Auxiliary.markov_chain_book import markov_chain_book
 from robustsp.RobustFiltering.examples.Auxiliary.create_environment_book import create_environment_book
 
+from robustsp.RobustFiltering.m_param_est import m_param_est
+
 from robustsp.Covariance.spatmed import spatmed
 from robustsp.Covariance.Mscat import Mscat
 
