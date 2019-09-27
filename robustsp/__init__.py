@@ -30,9 +30,9 @@ from robustsp.Regression.prostate_plot_setup import prostate_plot_setup
 
 from robustsp.RobustFiltering.asymmetric_tanh import asymmetric_tanh
 from robustsp.RobustFiltering.ekf_toa import ekf_toa
+from robustsp.RobustFiltering.ekf_toa_robust import ekf_toa_robust
 from robustsp.RobustFiltering.examples.Auxiliary.markov_chain_book import markov_chain_book
 from robustsp.RobustFiltering.examples.Auxiliary.create_environment_book import create_environment_book
-
 from robustsp.RobustFiltering.m_param_est import m_param_est
 
 from robustsp.Covariance.spatmed import spatmed
