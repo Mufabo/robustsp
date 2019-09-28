@@ -7,7 +7,7 @@ def ekf_toa_robust(r_ges, theta_init, BS, parameter={}):
     M  = len(BS) # M numer of BS, N number of samples
     N  = len(r_ges[1,:])
     
-    x  = BS[:,1]
+    x  = BS[:,0]
     y  = BS[:,1]
     
     if len(parameter) == 0:

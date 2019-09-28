@@ -3,12 +3,11 @@ import scipy as sp
 import robustsp as rsp
 
 def ekf_toa_robust(r_ges, theta_init, BS, parameter={}):
-    
-    M  = len(BS) # M numer of BS, N number of samples
-    N  = len(r_ges[1,:])
-    
-    x  = BS[:,1]
+    # Base station coordinates    
+    x  = BS[:,0]
     y  = BS[:,1]
+    M  = len(x) # M numer of BS, N number of samples
+    N  = len(r_ges[0,:])
     
     if len(parameter) == 0:
         # use default parameters
@@ -49,10 +48,8 @@ def ekf_toa_robust(r_ges, theta_init, BS, parameter={}):
         
         for ii in range(M):
             H[ii,:] = [(th_hat_min[0,kk]-x[ii])/\
-           np.sqrt((th_hat_min[0,kk]-x[ii])**2 \
-                   + (th_hat_min[1,kk]-y[ii])**2) ,\
-           (th_hat_min[1,kk]-y[ii])/\
-           np.sqrt((th_hat_min[0,kk]-x[ii])**2 \
+           np.sqrt((th_hat_min[0,kk]-x[ii])**2 + (th_hat_min[1,kk]-y[ii])**2) ,\
+           (th_hat_min[1,kk]-y[ii])/np.sqrt((th_hat_min[0,kk]-x[ii])**2 \
                    + (th_hat_min[1,kk]-y[ii])**2)\
            ,0,0]
             h_min[ii] = np.sqrt((th_hat_min[0,kk]-x[ii])**2 \
