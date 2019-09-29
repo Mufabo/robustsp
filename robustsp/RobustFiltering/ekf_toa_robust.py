@@ -54,13 +54,14 @@ def ekf_toa_robust(r_ges, theta_init, BS, parameter={}):
            ,0,0]
             h_min[ii] = np.sqrt((th_hat_min[0,kk]-x[ii])**2 \
                                + (th_hat_min[1,kk]-y[ii])**2)
-            
+
         P_min[kk,:,:] = A@P[kk-1,:,:]@A.T + G@Q@G.T
-        
+
         # measurement residuals
         vk = r_ges[:,kk] - h_min.T
-        
+
         Psi = sp.linalg.block_diag(P_min[kk,:,:],R)
+
         try:
             C = sp.linalg.cholesky(Psi)
         except:
@@ -68,10 +69,11 @@ def ekf_toa_robust(r_ges, theta_init, BS, parameter={}):
            
         S  = np.linalg.inv(C.T) @ np.vstack([np.eye(4), H])
         rk = np.linalg.inv(C.T) @ [*th_hat_min[:,kk],*(r_ges[:,kk]-h_min + H @ th_hat_min[:,kk])]
-        th_hat[:,kk] = np.linalg.pinv(S) @ rk
         
-        th_hat[:,kk],_,_,_ = rsp.m_param_est(rk,S,th_hat[:,kk],parameter)
+        th_hat[:,kk] = (np.linalg.pinv(S) @ rk[:,None]).flatten() 
         
+        th_hat[:,kk] = rsp.m_param_est(rk,S,th_hat[:,kk],parameter)[0]
+
         # robust covariance estimate
         if parameter['var_est'] == 1:
             # update for robust covariance estimation
@@ -89,3 +91,4 @@ def ekf_toa_robust(r_ges, theta_init, BS, parameter={}):
     parameter['Rest'] = sigma2
     
     return th_hat, P_min, P, numberit, parameter
+
