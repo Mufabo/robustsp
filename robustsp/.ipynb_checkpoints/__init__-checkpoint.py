@@ -35,6 +35,8 @@ from robustsp.RobustFiltering.examples.Auxiliary.markov_chain_book import markov
 from robustsp.RobustFiltering.examples.Auxiliary.create_environment_book import create_environment_book
 from robustsp.RobustFiltering.m_param_est import m_param_est
 
+from robustsp.RobustFiltering.examples.Auxiliary.eval_track import eval_track
+
 from robustsp.Covariance.spatmed import spatmed
 from robustsp.Covariance.Mscat import Mscat
 
