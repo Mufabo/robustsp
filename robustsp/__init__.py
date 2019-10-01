@@ -40,4 +40,7 @@ from robustsp.RobustFiltering.examples.Auxiliary.eval_track import eval_track
 from robustsp.Covariance.spatmed import spatmed
 from robustsp.Covariance.Mscat import Mscat
 
+from robustsp.DependentData.Auxiliary.muler_rho1 import muler_rho1
+from robustsp.DependentData.Auxiliary.m_scale import m_scale
+from robustsp.DependentData.Auxiliary.m_infinity import m_infinity
 import numpy as np
