@@ -2,7 +2,7 @@ import numpy as np
 import scipy.signal as sps
 
 def ma_infinity(phi, theta, Q_long):
-    t = theta.flatten()
+    t = [theta] if np.isscalar(theta) else theta.flatten()
     ph= phi.flatten()
     
     Q = len(t) # MA order
