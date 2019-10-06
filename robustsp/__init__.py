@@ -44,7 +44,7 @@ from robustsp.DependentData.Auxiliary.muler_rho1 import muler_rho1
 from robustsp.DependentData.Auxiliary.m_scale import m_scale
 from robustsp.DependentData.Auxiliary.ma_infinity import ma_infinity
 from robustsp.DependentData.Auxiliary.bip_ar1_s import bip_ar1_s
-
 from robustsp.DependentData.Auxiliary.eta import eta
+from robustsp.DependentData.ar_est_bip_s import ar_est_bip_s
 
 import numpy as np
