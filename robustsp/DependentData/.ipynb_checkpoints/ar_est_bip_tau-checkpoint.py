@@ -1,20 +1,13 @@
 import numpy as np
 import robustsp as rsp
 from robustsp.DependentData.Auxiliary.helper import *
-'''
-TODO
 
-make a_scale_final nparray of length P instead of list
-'''
-
-def ar_est_bip_s(xxx, P):
-    '''
-    Inputs:
-    x   : 1darray, dtype=float. data
-    P   : scalar. Autoregressive order
-    '''
+def ar_est_bip_tau(xxx, P):
     x = np.array(xxx)
-    N = len(x);
+    N = len(x) # length of the observation vector
+    phi_grid = np.arange(-.99,.991,.05) # coarse grid search
+    fine_grid= np.arange(-.99,.991,.001) # finer grid via polynomial interpolation
+
     kap2 = 0.8724286
     phi_grid = np.arange(-.99,.991,.05) # coarse grid search
     fine_grid= np.arange(-.99,.991,.001) # finer grid via polynomial interpolation
@@ -32,17 +25,14 @@ def ar_est_bip_s(xxx, P):
     x[1:min(10,int(np.floor(N/2)))] = x_tran[1:min(10,int(np.floor(N/2)))]
     
     if P==0:
-        phi_hat = []
-        a_scale_final = rsp.m_scale(x)
-        return phi_hat, a_scale_final
+        return [], rsp.tau_scale(x)
     elif P==1:
-        x_filt, phi_hat, a_scale_final = rsp.bip_ar1_s(x,N,phi_grid,fine_grid,kap2)
+        x_filt, phi_hat, a_scale_final = rsp.bip_ar1_tau(x,N,phi_grid,fine_grid,kap2,P)
     elif P>1:
         phi_hat = np.zeros((P,P))
-        x_filt, phi_hat[0,0], a_scale_final = rsp.bip_ar1_s(x,N,phi_grid,fine_grid,kap2)
+        x_filt, phi_hat[0,0], a_scale_final = rsp.bip_ar1_tau(x,N,phi_grid,fine_grid,kap2,P)
 
         npa = lambda x: np.array(x)
-
 
         for p in range(1,P):
             for mm in range(len(phi_grid)):
@@ -73,8 +63,8 @@ def ar_est_bip_s(xxx, P):
                     a[ii] = compA(x[ii],predictor_coeffs,xArr,aArr,sigma_hat)
 
                     a2[ii] = x[ii] - predictor_coeffs@xArr
-                a_bip_sc[mm] = rsp.m_scale(a[p+1:]) # residual scale for BIP-AR
-                a_sc[mm] = rsp.m_scale(a2[p+1:]) # residual scale for AR
+                a_bip_sc[mm] = rsp.tau_scale(a[p+1:]) # residual scale for BIP-AR
+                a_sc[mm] = rsp.tau_scale(a2[p+1:]) # residual scale for AR
 
             # tau-estimate under the BIP-AR(p) and AR(p)
             phi, phi2, temp, temp2, ind_max, ind_max2 = tauEstim(phi_grid, a_bip_sc, fine_grid, a_sc)
@@ -109,9 +99,9 @@ def ar_est_bip_s(xxx, P):
                 a2[ii]=x[ii]-phi_hat[p,:p+1]@xArr
 
             if temp2>temp:
-                a_scale_final.append(rsp.m_scale(a[p+1:]))
+                a_scale_final[p+1] = rsp.tau_scale(a[p+1:])
             else:
-                a_scale_final.append(rsp.m_scale(a2[p+1:]))
+                a_scale_final[p+1] = rsp.tau_scale(a2[p+1:])
 
         phi_hat = phi_hat[p,:] # BIP-AR(P) tau-estimate        
 

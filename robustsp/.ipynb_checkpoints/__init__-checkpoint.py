@@ -40,11 +40,15 @@ from robustsp.RobustFiltering.examples.Auxiliary.eval_track import eval_track
 from robustsp.Covariance.spatmed import spatmed
 from robustsp.Covariance.Mscat import Mscat
 
+from robustsp.DependentData.ar_est_bip_s import ar_est_bip_s
+from robustsp.DependentData.ar_est_bip_tau import ar_est_bip_tau
 from robustsp.DependentData.Auxiliary.muler_rho1 import muler_rho1
+from robustsp.DependentData.Auxiliary.muler_rho2 import muler_rho2
 from robustsp.DependentData.Auxiliary.m_scale import m_scale
 from robustsp.DependentData.Auxiliary.ma_infinity import ma_infinity
 from robustsp.DependentData.Auxiliary.bip_ar1_s import bip_ar1_s
 from robustsp.DependentData.Auxiliary.eta import eta
-from robustsp.DependentData.ar_est_bip_s import ar_est_bip_s
+from robustsp.DependentData.Auxiliary.tau_scale import tau_scale
+from robustsp.DependentData.Auxiliary.bip_ar1_tau import bip_ar1_tau
 
 import numpy as np
