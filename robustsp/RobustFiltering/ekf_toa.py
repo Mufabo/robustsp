@@ -6,7 +6,7 @@ INPUTS
  theta_init:  initial state estimate
  BS:   base station positions, M x 2 np array
 OUTPUTS
- th_hat:             state estimates
+ th_hat:             state estimates, 4xN matrix
  P_min:              apriori covariance
  P:                  aposteriori covariance
 '''

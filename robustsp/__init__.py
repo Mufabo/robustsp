@@ -50,5 +50,7 @@ from robustsp.DependentData.Auxiliary.bip_ar1_s import bip_ar1_s
 from robustsp.DependentData.Auxiliary.eta import eta
 from robustsp.DependentData.Auxiliary.tau_scale import tau_scale
 from robustsp.DependentData.Auxiliary.bip_ar1_tau import bip_ar1_tau
+from robustsp.DependentData.Auxiliary.arma_resid import arma_resid
+from robustsp.DependentData.Auxiliary.bip_resid import bip_resid
 
 import numpy as np
