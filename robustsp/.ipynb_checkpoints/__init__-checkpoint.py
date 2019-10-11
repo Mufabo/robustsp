@@ -53,4 +53,6 @@ from robustsp.DependentData.Auxiliary.bip_ar1_tau import bip_ar1_tau
 from robustsp.DependentData.Auxiliary.arma_resid import arma_resid
 from robustsp.DependentData.Auxiliary.bip_resid import bip_resid
 
+from robustsp.SpectrumEstimation.Auxiliary.order_wk import order_wk
+from robustsp.SpectrumEstimation.Auxiliary.split_into_prime import split_into_prime
 import numpy as np
