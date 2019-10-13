@@ -1,6 +1,9 @@
 import numpy as np
 import robustsp as rsp
 
+def poles(x):
+    np.sum(np.roots(-1*np.array([-1, *x]))) > 1
+
 def compA(xII,pred,xArr,aArr,sig):
     return xII \
 - np.array(pred) @\
