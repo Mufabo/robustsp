@@ -53,6 +53,8 @@ from robustsp.DependentData.Auxiliary.tau_scale import tau_scale
 from robustsp.DependentData.Auxiliary.bip_ar1_tau import bip_ar1_tau
 from robustsp.DependentData.Auxiliary.arma_resid import arma_resid
 from robustsp.DependentData.Auxiliary.bip_resid import bip_resid
+from robustsp.DependentData.Auxiliary.arma_s_resid_sc import arma_s_resid_sc
+from robustsp.DependentData.Auxiliary.bip_s_resid_sc import bip_s_resid_sc
 
 
 from robustsp.SpectrumEstimation.Auxiliary.order_wk import order_wk

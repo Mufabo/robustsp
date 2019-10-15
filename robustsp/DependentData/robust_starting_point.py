@@ -26,7 +26,7 @@ def robust_starting_point(x,p,q):
                       enforce_stationarity=False, enforce_invertibility=False)
     res = mod.fit()
     beta_initial= res.params
-    print (beta_initial)
+
     # Check for stationarity
     poles = lambda x: np.sum(np.roots(-1*np.array([-1, *x]))) > 1
     
