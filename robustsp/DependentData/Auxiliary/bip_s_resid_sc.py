@@ -59,7 +59,7 @@ def bip_s_resid_sc(x, beta_hat, p, q):
 
                 a_bip[ii] = x[ii]-phi_hat@(xArr-apArr\
                 +sigma_hat*rsp.eta(apArr/sigma_hat))
-                print(a_bip)
+                
 
         a_bip_sc = rsp.m_scale(a_bip[p:])
         x_filt = np.array(x)

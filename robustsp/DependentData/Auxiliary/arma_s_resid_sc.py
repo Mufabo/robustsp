@@ -18,11 +18,9 @@ def arma_s_resid_sc(x, beta_hat, p, q):
         a = np.array(x)
     else:
         if poles(phi_hat) or poles(theta_hat):
-            print('not stationary')
             a_sc = 10**10
         elif p>=1 and q>=1:
             # ARMA Models
-            print('ARMA')
             for ii in range(r,N):
                 # ARMA residuals
                 xArr = x[ii-1::-1] if ii-p-1 < 0 else x[ii-1:ii-p-1:-1]
