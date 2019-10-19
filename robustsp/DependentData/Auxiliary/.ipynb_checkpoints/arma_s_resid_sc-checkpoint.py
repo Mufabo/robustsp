@@ -42,4 +42,4 @@ def arma_s_resid_sc(x, beta_hat, p, q):
     
     a_sc = rsp.m_scale(a[p:])
     
-    return a_sc
+    return a_sc, a[p:]
