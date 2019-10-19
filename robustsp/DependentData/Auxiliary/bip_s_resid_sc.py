@@ -67,4 +67,4 @@ def bip_s_resid_sc(x, beta_hat, p, q):
         for ii in range(p,N):
             x_filt[ii] = x[ii] - a_bip[ii] + sigma_hat * rsp.eta(a_bip[ii]/sigma_hat)
     
-    return a_bip_sc, x_filt
+    return a_bip_sc, x_filt, a_bip[p:]
