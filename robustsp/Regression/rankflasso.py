@@ -28,7 +28,7 @@ def rankflasso(yx,Xx,lambda1,lambda2,b0=None,printitn=0):
     intcpt = False
 
     if b0 is None:
-        b0 = np.linalg.solve(np.hstack((np.ones((n,1)),X)),y)
+        b0 = np.linalg.solve(np.hstack((np.ones((n,1)),X)),y[:,None])
         b0 = b0[1:]
 
 
