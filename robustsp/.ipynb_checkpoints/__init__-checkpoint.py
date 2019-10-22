@@ -41,6 +41,7 @@ from robustsp.Covariance.spatmed import spatmed
 from robustsp.Covariance.Mscat import Mscat
 
 from robustsp.DependentData.ar_est_bip_s import ar_est_bip_s
+from robustsp.DependentData.arma_est_bip_s import arma_est_bip_s
 from robustsp.DependentData.ar_est_bip_tau import ar_est_bip_tau
 from robustsp.DependentData.robust_starting_point import robust_starting_point
 from robustsp.DependentData.Auxiliary.muler_rho1 import muler_rho1
