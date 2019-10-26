@@ -44,6 +44,9 @@ from robustsp.DependentData.ar_est_bip_s import ar_est_bip_s
 from robustsp.DependentData.arma_est_bip_s import arma_est_bip_s
 from robustsp.DependentData.ar_est_bip_tau import ar_est_bip_tau
 from robustsp.DependentData.robust_starting_point import robust_starting_point
+from robustsp.DependentData.arma_est_bip_mm import arma_est_bip_mm
+from robustsp.DependentData.arma_est_bip_tau import arma_est_bip_tau
+
 from robustsp.DependentData.Auxiliary.muler_rho1 import muler_rho1
 from robustsp.DependentData.Auxiliary.muler_rho2 import muler_rho2
 from robustsp.DependentData.Auxiliary.m_scale import m_scale
@@ -59,6 +62,7 @@ from robustsp.DependentData.Auxiliary.bip_s_resid_sc import bip_s_resid_sc
 from robustsp.DependentData.Auxiliary.arma_s_resid import arma_s_resid
 from robustsp.DependentData.Auxiliary.bip_s_resid import bip_s_resid
 from robustsp.DependentData.Auxiliary.bip_tau_resid_sc import bip_tau_resid_sc
+from robustsp.DependentData.Auxiliary.arma_tau_resid_sc import arma_tau_resid_sc
 
 from robustsp.SpectrumEstimation.Auxiliary.order_wk import order_wk
 from robustsp.SpectrumEstimation.Auxiliary.split_into_prime import split_into_prime
