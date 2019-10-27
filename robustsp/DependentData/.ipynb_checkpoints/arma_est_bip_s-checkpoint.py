@@ -32,10 +32,7 @@ def arma_est_bip_s(x,p,q):
         raise ValueError('There are too many parameters to estimate for chosen data size. Reduce model order or use a larger data set.')
     
     # Robust starting point by BIP AR-S approximation
-    beta_initial = rsp.robust_starting_point(x,p,q)[0] # doesn'T work ...
-    
-    # matlabs beta_initial, for testing purposes
-    beta_initial = np.array([-0.7823, -0.1441, -0.7669])
+    beta_initial = rsp.robust_starting_point(x,p,q)[0] 
     
     F = lambda beta: rsp.arma_s_resid_sc(x, beta, p, q)[1]
 

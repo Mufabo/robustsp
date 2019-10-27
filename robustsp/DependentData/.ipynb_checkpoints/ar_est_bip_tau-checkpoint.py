@@ -55,7 +55,7 @@ def ar_est_bip_tau(xxx, P):
                 a = np.zeros(len(x))
                 a2= np.zeros(len(x))
 
-                for ii in range(p+1,N):
+                for ii in range(p,N):
 
                     xArr = x[ii-1::-1] if ii-M-1 <0 else x[ii-1:ii-M-1:-1]
                     aArr = a[ii-1::-1] if ii-M-1 <0 else a[ii-1:ii-M-1:-1]
@@ -89,7 +89,7 @@ def ar_est_bip_tau(xxx, P):
 
             x_filt = np.zeros(len(x))
 
-            for ii in range(p+1,N):
+            for ii in range(p,N):
                 xArr = x[ii-1::-1] if ii-M-1 <0 else x[ii-1:ii-M-1:-1]
                 aArr = a[ii-1::-1] if ii-M-1 <0 else a[ii-1:ii-M-1:-1]
 
@@ -105,7 +105,7 @@ def ar_est_bip_tau(xxx, P):
 
         phi_hat = phi_hat[p,:] # BIP-AR(P) tau-estimate        
 
-        for ii in range(p+1,N):
+        for ii in range(p,N):
             x_filt[ii] = x[ii] - a[ii] + sigma_hat*rsp.eta(a[ii]/sigma_hat)
 
     return phi_hat, x_filt, a_scale_final

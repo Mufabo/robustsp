@@ -14,7 +14,7 @@ def ar_est_bip_s(xxx, P):
     P   : scalar. Autoregressive order
     '''
     x = np.array(xxx)
-    N = len(x);
+    N = len(x)
     kap2 = 0.8724286
     phi_grid = np.arange(-.99,.991,.05) # coarse grid search
     fine_grid= np.arange(-.99,.991,.001) # finer grid via polynomial interpolation
@@ -65,7 +65,7 @@ def ar_est_bip_s(xxx, P):
                 a = np.zeros(len(x))
                 a2= np.zeros(len(x))
 
-                for ii in range(p+1,N):
+                for ii in range(p,N):
 
                     xArr = x[ii-1::-1] if ii-M-1 <0 else x[ii-1:ii-M-1:-1]
                     aArr = a[ii-1::-1] if ii-M-1 <0 else a[ii-1:ii-M-1:-1]
@@ -73,8 +73,8 @@ def ar_est_bip_s(xxx, P):
                     a[ii] = compA(x[ii],predictor_coeffs,xArr,aArr,sigma_hat)
 
                     a2[ii] = x[ii] - predictor_coeffs@xArr
-                a_bip_sc[mm] = rsp.m_scale(a[p+1:]) # residual scale for BIP-AR
-                a_sc[mm] = rsp.m_scale(a2[p+1:]) # residual scale for AR
+                a_bip_sc[mm] = rsp.m_scale(a[p:]) # residual scale for BIP-AR
+                a_sc[mm] = rsp.m_scale(a2[p:]) # residual scale for AR
 
             # tau-estimate under the BIP-AR(p) and AR(p)
             phi, phi2, temp, temp2, ind_max, ind_max2 = tauEstim(phi_grid, a_bip_sc, fine_grid, a_sc)
@@ -99,7 +99,7 @@ def ar_est_bip_s(xxx, P):
 
             x_filt = np.zeros(len(x))
 
-            for ii in range(p+1,N):
+            for ii in range(p,N):
                 xArr = x[ii-1::-1] if ii-M-1 <0 else x[ii-1:ii-M-1:-1]
                 aArr = a[ii-1::-1] if ii-M-1 <0 else a[ii-1:ii-M-1:-1]
 
@@ -109,13 +109,13 @@ def ar_est_bip_s(xxx, P):
                 a2[ii]=x[ii]-phi_hat[p,:p+1]@xArr
 
             if temp2>temp:
-                a_scale_final.append(rsp.m_scale(a[p+1:]))
+                a_scale_final.append(rsp.m_scale(a[p:]))
             else:
-                a_scale_final.append(rsp.m_scale(a2[p+1:]))
+                a_scale_final.append(rsp.m_scale(a2[p:]))
 
         phi_hat = phi_hat[p,:] # BIP-AR(P) tau-estimate        
 
-        for ii in range(p+1,N):
+        for ii in range(p,N):
             x_filt[ii] = x[ii] - a[ii] + sigma_hat*rsp.eta(a[ii]/sigma_hat)
 
     return phi_hat, x_filt, a_scale_final

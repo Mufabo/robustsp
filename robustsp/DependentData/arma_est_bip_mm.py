@@ -3,7 +3,7 @@ import robustsp as rsp
 from scipy.optimize import least_squares as lsq
 
 def arma_est_bip_mm(x,p,q):
-    bip_s_est = rsp.arma_est_bip_s(x,p,q) #inno scale shouldnt be 0
+    bip_s_est = rsp.arma_est_bip_s(x,p,q)
 
     beta_hat_s = np.array([*bip_s_est['ar_coeffs'], *bip_s_est['ma_coeffs']])
     
