@@ -14,7 +14,7 @@ beta_initial: arraylike, robust starting point for AR(p)and MA(q) parameters bas
 x_filt: arraylike, outlier cleaned signal using BIP-AR(p_long) predictions
 
 '''
-def robust_starting_point(x,p,q):
+def robust_starting_point(x,p,q,enf_stat=False):
     # usually a short AR model provides best results. 
     # Change to longer model, if necessary.
     p_long = p if q==0 else min(2*(p+q),4 )
@@ -23,7 +23,7 @@ def robust_starting_point(x,p,q):
     
     # TODO make estimates like matlab
     mod = tsa.SARIMAX(x_filt, order=(p, 0, q), concentrate_scale=True,
-                      enforce_stationarity=False, enforce_invertibility=False)
+                      enforce_stationarity=enf_stat, enforce_invertibility=False)
     res = mod.fit()
     beta_initial= res.params
 

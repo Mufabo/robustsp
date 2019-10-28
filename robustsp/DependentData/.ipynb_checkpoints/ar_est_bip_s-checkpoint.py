@@ -32,7 +32,8 @@ def ar_est_bip_s(xxx, P):
     x[1:min(10,int(np.floor(N/2)))] = x_tran[1:min(10,int(np.floor(N/2)))]
     
     if P==0:
-        phi_hat = []
+        # AR order = 0
+        phi_hat = [] # return empty AR-parameter vector
         a_scale_final = rsp.m_scale(x)
         return phi_hat, a_scale_final
     elif P==1:
@@ -43,14 +44,11 @@ def ar_est_bip_s(xxx, P):
 
         npa = lambda x: np.array(x)
 
-
         for p in range(1,P):
             for mm in range(len(phi_grid)):
-
                 for pp in range(p):
                     phi_hat[p,pp] =\
                     phi_hat[p-1,pp]-phi_grid[mm]*phi_hat[p-1,p-pp-1]
-
                 predictor_coeffs =\
                 np.array([*phi_hat[p,:p], phi_grid[mm]])
 
@@ -61,12 +59,10 @@ def ar_est_bip_s(xxx, P):
                     sigma_hat = a_scale_final[0]/np.sqrt(1+kap2*np.sum(lambd**2))
                 else:
                     sigma_hat = 1.483*np.median(np.abs(x-np.median(x)))
-
                 a = np.zeros(len(x))
                 a2= np.zeros(len(x))
 
-                for ii in range(p,N):
-
+                for ii in range(p+1,N):
                     xArr = x[ii-1::-1] if ii-M-1 <0 else x[ii-1:ii-M-1:-1]
                     aArr = a[ii-1::-1] if ii-M-1 <0 else a[ii-1:ii-M-1:-1]
 
@@ -75,7 +71,6 @@ def ar_est_bip_s(xxx, P):
                     a2[ii] = x[ii] - predictor_coeffs@xArr
                 a_bip_sc[mm] = rsp.m_scale(a[p:]) # residual scale for BIP-AR
                 a_sc[mm] = rsp.m_scale(a2[p:]) # residual scale for AR
-
             # tau-estimate under the BIP-AR(p) and AR(p)
             phi, phi2, temp, temp2, ind_max, ind_max2 = tauEstim(phi_grid, a_bip_sc, fine_grid, a_sc)
 
@@ -83,10 +78,8 @@ def ar_est_bip_s(xxx, P):
             if temp2<temp:
                 ind_max=ind_max2
                 temp=temp2
-
             for pp in range(p):
                 phi_hat[p,pp] = phi_hat[p-1,pp]-fine_grid[ind_max]*phi_hat[p-1,p-pp-1]
-
             phi_hat[p,p] = fine_grid[ind_max]
 
             # final AR(p) tau-scale-estimate depending on phi_hat(p,p)
@@ -99,7 +92,7 @@ def ar_est_bip_s(xxx, P):
 
             x_filt = np.zeros(len(x))
 
-            for ii in range(p,N):
+            for ii in range(p+1,N):
                 xArr = x[ii-1::-1] if ii-M-1 <0 else x[ii-1:ii-M-1:-1]
                 aArr = a[ii-1::-1] if ii-M-1 <0 else a[ii-1:ii-M-1:-1]
 

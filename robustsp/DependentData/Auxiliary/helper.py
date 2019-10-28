@@ -5,9 +5,7 @@ def poles(x):
     np.sum(np.roots(-1*np.array([-1, *x]))) > 1
 
 def compA(xII,pred,xArr,aArr,sig):
-    return xII \
-- np.array(pred) @\
-(np.array(xArr)-np.array(aArr)+sig*rsp.eta(np.array(aArr)/sig))
+    return xII - np.array(pred) @(np.array(xArr)-np.array(aArr)+sig*rsp.eta(np.array(aArr)/sig))
     
     
 def tauEstim(phi_grid, a_bip_sc, fine_grid, a_sc):    

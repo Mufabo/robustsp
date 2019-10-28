@@ -7,7 +7,7 @@ def bip_s_resid_sc(x, beta_hat, p, q):
     
     theta_hat = np.array(beta_hat[p:]) # [] if p=length(beta_hat), AR case
     
-    x = np.array(x)
+    #x = np.array(x)
     N = len(x)
     r = max(p,q)
     
@@ -17,11 +17,10 @@ def bip_s_resid_sc(x, beta_hat, p, q):
     
     kap2 = 0.8724286
     
-    poles = lambda x: np.sum(np.abs(np.roots(-1*np.array([-1,*x])))>1)
+    poles = lambda x: np.sum(np.abs(np.roots(-1*np.array([-1,*x]))) >1)
     
     if poles(phi_hat) or poles(theta_hat):
-        sigma_hat = x_sc
-    
+        sigma_hat = x_sc   
     else:
         lamb = rsp.ma_infinity(phi_hat, -1*theta_hat, 100) # MA infinity approximation to compute scale used in eta function
         sigma_hat = np.sqrt(x_sc**2/(1+kap2*np.sum(lamb**2))) # scale used in eta
@@ -31,7 +30,7 @@ def bip_s_resid_sc(x, beta_hat, p, q):
         a_bip = np.array(x)
     else:
         if poles(phi_hat) or poles(theta_hat):
-            a_bip_sc = 10**10
+            return 10**10,a_bip,x[p:]
         elif p>=1 and q>=1:
             # ARMA model
             for ii in range(r,N):
@@ -63,7 +62,7 @@ def bip_s_resid_sc(x, beta_hat, p, q):
 
         a_bip_sc = rsp.m_scale(a_bip[p:])
         x_filt = np.array(x)
-        
+
         for ii in range(p,N):
             x_filt[ii] = x[ii] - a_bip[ii] + sigma_hat * rsp.eta(a_bip[ii]/sigma_hat)
     
