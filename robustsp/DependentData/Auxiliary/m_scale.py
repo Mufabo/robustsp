@@ -1,13 +1,11 @@
 import numpy as np
 import robustsp as rsp
 
-def m_scale(xxx):
-    x = np.array(xxx)
+def m_scale(x, max_iters = 30, delta = 3.25/2, epsilon = 1e-4):
+    #x = np.array(xxx)
     N = len(x)
-    sigma_k = np.mean(np.abs(x-np.mean(x)))
-    max_iters = 30
-    delta = 3.25/2
-    epsilon = 1e-4
+    sigma_k = rsp.madn(x)
+        
     k = 0
     w_k = np.ones(N)
     

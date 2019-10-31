@@ -37,7 +37,7 @@ def arma_est_bip_s(x,p,q):
     if len(beta_initial) != 1:
         # optimize on residuals
         F = lambda beta: rsp.arma_s_resid_sc(x, beta, p, q)[1] 
-
+        
         F_bip = lambda beta: rsp.bip_s_resid_sc(x, beta, p, q)[2]
     else:
         # optimize directly on scale
@@ -49,10 +49,10 @@ def arma_est_bip_s(x,p,q):
     # different from matlab print('beta_arma: ', beta_arma)
     # but has lower residuals than matlab print('F(beta_arma): ',rsp.arma_s_resid_sc(x,beta_arma,p,q))
     beta_bip = lsq(F_bip, beta_initial,xtol=5*1e-7,ftol=5*1e-7,method='lm')['x']
-
+    
     a_sc = rsp.arma_s_resid_sc(x, beta_arma, p, q)[0] # innovations m-scale for ARMA model
     
-    a_bip_sc, x_filt,_ = rsp.bip_s_resid_sc(x, beta_bip, p, q) # innovations m-scale for BIP-ARMA model
+    a_bip_sc, x_filt, _ = rsp.bip_s_resid_sc(x, beta_bip, p, q) # innovations m-scale for BIP-ARMA model
     
     # final parameter estimate uses the model that provides smaller
     # m-scale
