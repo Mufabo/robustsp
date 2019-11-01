@@ -43,13 +43,12 @@ def arma_est_bip_s(x,p,q):
         # optimize directly on scale
         F = lambda beta: rsp.arma_s_resid_sc(x, beta, p, q)[0] 
 
-        F_bip = lambda beta: rsp.bip_s_resid_sc(x, beta, p, q)[0]
-    
+        F_bip = lambda beta: rsp.bip_s_resid_sc(x, beta, p, q)[0]    
     beta_arma = lsq(F, beta_initial,xtol=5*1e-7,ftol=5*1e-7,method='lm')['x']
     # different from matlab print('beta_arma: ', beta_arma)
     # but has lower residuals than matlab print('F(beta_arma): ',rsp.arma_s_resid_sc(x,beta_arma,p,q))
     beta_bip = lsq(F_bip, beta_initial,xtol=5*1e-7,ftol=5*1e-7,method='lm')['x']
-    
+
     a_sc = rsp.arma_s_resid_sc(x, beta_arma, p, q)[0] # innovations m-scale for ARMA model
     
     a_bip_sc, x_filt, _ = rsp.bip_s_resid_sc(x, beta_bip, p, q) # innovations m-scale for BIP-ARMA model
@@ -61,19 +60,11 @@ def arma_est_bip_s(x,p,q):
     # final m-scale
     a_m_sc = min(a_sc, a_bip_sc)
     
-    phi_bip_s = -1*beta_hat[:p] # will be [] if p<=0
-    
-    phi_bip_s_init = -1* beta_initial[:p]
-    
-    theta_bip_s = -1*beta_hat[p:] if q>0 else []
-    
-    theta_bip_s_init = -1* beta_initial[p:] if q>0 else []
-    
-    results = {'ar_coeffs': phi_bip_s,
-              'ma_coeffs': theta_bip_s,
+    results = {'ar_coeffs': -1*beta_hat[:p],
+              'ma_coeffs': -1*beta_hat[p:],
               'inno_scale': a_m_sc,
               'cleaned_signal': x_filt,
-              'ar_coeffs_init': phi_bip_s_init,
-              'ma_coeffs_init': theta_bip_s_init}
+              'ar_coeffs_init': -1* beta_initial[:p],
+              'ma_coeffs_init': -1* beta_initial[p:]}
     
     return results
