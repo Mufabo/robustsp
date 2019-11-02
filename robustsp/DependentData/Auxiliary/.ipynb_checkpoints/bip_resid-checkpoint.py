@@ -28,9 +28,7 @@ def bip_resid(xx, beta_hatx, p, q):
         else:
             if p>=1 and q>=1:
                 # ARMA Models
-                #for ii in range(r,N):
-                while r+1 != N:
-                    ii = r
+                for ii in range(r,N):
                     # BIP-ARMA residuals
                     xArr = x[ii-1::-1] if ii-p-1 < 0 else x[ii-1:ii-p-1:-1]
                     abArr = a_bip[ii-1::-1] if ii-p-1 < 0 else a_bip[ii-1:ii-p-1:-1]

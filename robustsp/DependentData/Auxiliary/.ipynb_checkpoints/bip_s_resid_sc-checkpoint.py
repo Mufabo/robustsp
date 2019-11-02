@@ -31,39 +31,33 @@ def bip_s_resid_sc(x, beta_hat, p, q):
     else:
         if poles(phi_hat) or poles(theta_hat):
             return 10**10,a_bip,x[p:]
-        elif p>=1 and q>=1:
-            # ARMA model
-            for ii in range(r,N):
-                # BIP-ARMA residuals
-                xArr = x[ii-1::-1] if ii-p-1 < 0 else x[ii-1:ii-p-1:-1]
-                aArr = a_bip[ii-1::-1] if ii-q-1 < 0 else a_bip[ii-1:ii-q-1:-1]
-                apArr = a_bip[ii-1::-1] if ii-p-1 < 0 else a_bip[ii-1:ii-p-1:-1]
+        else:
+            xArr = lambda ii: x[ii-1::-1] if ii-p-1 < 0 else x[ii-1:ii-p-1:-1]
+            aArr = lambda ii: a_bip[ii-1::-1] if ii-q-1 < 0 \
+            else a_bip[ii-1:ii-q-1:-1]
+            apArr = lambda ii: a_bip[ii-1::-1] if ii-p-1 < 0 \
+            else a_bip[ii-1:ii-p-1:-1]
+            if p>=1 and q>=1:
+                # ARMA model
+                for ii in range(r,N):
+                    # BIP-ARMA residuals
+                    a_bip[ii] = x[ii]\
+                    -phi_hat@\
+                    (xArr(ii)-apArr(ii)+sigma_hat*rsp.eta(apArr(ii)/sigma_hat))+sigma_hat*(theta_hat@rsp.eta(aArr(ii)/sigma_hat))              
+            elif p==0 and q>=1:
+                # MA residuals
+                for ii in range(r,N):
+                    # BIP-MA residuals               
+                    a_bip[ii] = x[ii]+theta_hat@(sigma_hat*rsp.eta(aArr(ii)/sigma_hat))
+            elif p>=1 and q==0:
+                # AR Model
+                for ii in range(r,N):
+                    a_bip[ii] = x[ii]-phi_hat@(xArr(ii)-apArr(ii)\
+                    +sigma_hat*rsp.eta(apArr(ii)/sigma_hat))
+            a_bip_sc = rsp.m_scale(a_bip[p:])
+            x_filt = np.array(x)
 
-                a_bip[ii] = x[ii]\
-                -phi_hat@(xArr-apArr+sigma_hat*rsp.eta(apArr/sigma_hat))+sigma_hat*(theta_hat[None,:])@(rsp.eta(aArr/sigma_hat)[:,None])
-                
-        elif p==0 and q>=1:
-            # MA residuals
-            for ii in range(r,N):
-                # BIP-MA residuals
-                aArr = a_bip[ii-1::-1] if ii-q-1 < 0 else a_bip[ii-1:ii-q-1:-1]
-                
-                a_bip[ii] = x[ii]+theta_hat[None,:]@(sigma_hat*rsp.eta(aArr/sigma_hat)[:,None])
-
-        elif p>=1 and q==0:
-            # AR Model
-            for ii in range(r,N):
-                xArr = x[ii-1::-1] if ii-p-1 < 0 else x[ii-1:ii-p-1:-1]
-                apArr = a_bip[ii-1::-1] if ii-p-1 < 0 else a_bip[ii-1:ii-p-1:-1]
-
-                a_bip[ii] = x[ii]-phi_hat@(xArr-apArr\
-                +sigma_hat*rsp.eta(apArr/sigma_hat))
-                
-
-        a_bip_sc = rsp.m_scale(a_bip[p:])
-        x_filt = np.array(x)
-
-        for ii in range(p,N):
-            x_filt[ii] = x[ii] - a_bip[ii] + sigma_hat * rsp.eta(a_bip[ii]/sigma_hat)
+            for ii in range(p,N):
+                x_filt[ii] = x[ii] - a_bip[ii] + sigma_hat * rsp.eta(a_bip[ii]/sigma_hat)
     
     return a_bip_sc, x_filt, a_bip[p:]

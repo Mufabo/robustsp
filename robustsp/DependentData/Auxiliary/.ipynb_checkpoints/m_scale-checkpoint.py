@@ -18,7 +18,5 @@ def m_scale(x, max_iters = 30, delta = 3.25/2, epsilon = 1e-4):
             sigma_k = sigma_k_plus1
             k += 1
         else:
-            break
-        
-    sigma_hat = sigma_k
-    return sigma_hat
+            break        
+    return sigma_k

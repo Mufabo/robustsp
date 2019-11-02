@@ -34,6 +34,6 @@ def robust_starting_point(x,p,q,enf_stat=False,enf_inv=False,con_scale=False):
         #beta_initial, xfilt = robust_starting_point(x_filt,p,q)
         pass
     # necessary ?
-    if poles(beta_initial[:p]) or poles(beta_initial[p:]):
-        beta_initial[:] = 0
+    #if (poles(beta_initial[:p]) or poles(beta_initial[p:]))>0:
+    #    beta_initial[:] = 0
     return beta_initial, x_filt
