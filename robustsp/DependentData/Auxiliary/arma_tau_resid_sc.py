@@ -2,8 +2,8 @@ import numpy as np
 import robustsp as rsp
 
 def arma_tau_resid_sc(x, beta_hat, p, q):
-    phi_hat = np.array(beta_hat[:p])
-    theta_hat = np.array(beta_hat[p:])
+    phi_hat = beta_hat[:p]
+    theta_hat = beta_hat[p:]
     
     N = len(x)
     r = max(p,q)
@@ -38,4 +38,4 @@ def arma_tau_resid_sc(x, beta_hat, p, q):
                 # AR residuals
                 a[ii] = x[ii]-phi_hat@xArr(ii)
 
-        return rsp.tau_scale(a[p:]), a[p:]
+        return rsp.tau_scale(a[p:])#, a[p:]

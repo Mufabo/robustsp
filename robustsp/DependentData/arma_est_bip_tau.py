@@ -1,6 +1,7 @@
 import numpy as np
 import robustsp as rsp
 from scipy.optimize import least_squares as lsq
+from scipy.optimize import minimize
 '''
   The function arma_est_bip_tau(x,p,q) comuptes BIP tau-estimates of the
   ARMA model parameters. It also computes an outlier cleaned signal using BIP-ARMA(p,q) predictions
@@ -33,24 +34,24 @@ result.ma_coeffs_init: robust starting point for BIP-MA(q) tau-estimates
 
 
 '''
-def arma_est_bip_tau(x,p,q):
+def arma_est_bip_tau(x,p,q,meth=None):
     # Robust starting point by BIP AR-tau approximation
     beta_initial = rsp.robust_starting_point(x,p,q)[0]
     
     F = lambda beta: rsp.arma_tau_resid_sc(x,beta,p,q)
     
     F_bip = lambda beta: rsp.bip_tau_resid_sc(x,beta,p,q)[0]
-
-    beta_arma = lsq(F, beta_initial,xtol=5*1e-7,ftol=5*1e-7,method='lm')['x']
     
-    beta_bip = lsq(F_bip, beta_initial, xtol=5*1e-7,ftol=5*1e-7,method='lm')['x']
+    beta_arma = minimize(F, beta_initial, method=meth)['x']
+    
+    beta_bip = minimize(F_bip, beta_initial, method=meth)['x']
     
     a_sc = rsp.arma_tau_resid_sc(x,beta_arma,p,q) # innovations tau-scale for ARMA model
     
-    a_bip_sc, x_filt = rsp.bip_tau_resid_sc(x, beta_bip, p, q) # innovations tau-scale for BIP-ARMA model
+    a_bip_sc, x_filt, _ = rsp.bip_tau_resid_sc(x, beta_bip, p, q) # innovations tau-scale for BIP-ARMA model
     
     # final parameter estimate uses the model that provides smallest tau_scale
-    beta_hat = beta_arma_mm if a_sc<a_bip_sc else beta_bip
+    beta_hat = beta_arma if a_sc<a_bip_sc else beta_bip
     
     # final tau scale
     a_tau_sc = min(a_sc, a_bip_sc)

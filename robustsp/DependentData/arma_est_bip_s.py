@@ -33,23 +33,6 @@ def arma_est_bip_s(x,p,q,meth='SLSQP'):
     # Robust starting point by BIP AR-S approximation
     beta_initial = rsp.robust_starting_point(x,p,q)[0] 
     
-    '''
-    if len(beta_initial) != 1:
-        # optimize on residuals
-        F = lambda beta: rsp.arma_s_resid_sc(x, beta, p, q)[1] 
-        
-        F_bip = lambda beta: rsp.bip_s_resid_sc(x, beta, p, q)[2]
-    else:
-        # optimize directly on scale
-        F = lambda beta: rsp.arma_s_resid_sc(x, beta, p, q)[0] 
-
-        F_bip = lambda beta: rsp.bip_s_resid_sc(x, beta, p, q)[0] 
-    
-    beta_arma = lsq(F, beta_initial,xtol=5*1e-7,ftol=5*1e-7,method='lm')['x']
-    # different from matlab print('beta_arma: ', beta_arma)
-    # but has lower residuals than matlab print('F(beta_arma): ',rsp.arma_s_resid_sc(x,beta_arma,p,q))
-    beta_bip = lsq(F_bip, beta_initial,xtol=5*1e-7,ftol=5*1e-7,method='lm')['x']
-    '''
     F = lambda beta: rsp.arma_s_resid_sc(x, beta, p, q) 
 
     F_bip = lambda beta: rsp.bip_s_resid_sc(x, beta, p, q)[0] 
@@ -77,3 +60,21 @@ def arma_est_bip_s(x,p,q,meth='SLSQP'):
               'ma_coeffs_init': -1* beta_initial[p:]}
     
     return results
+
+'''
+    if len(beta_initial) != 1:
+        # optimize on residuals
+        F = lambda beta: rsp.arma_s_resid_sc(x, beta, p, q)[1] 
+        
+        F_bip = lambda beta: rsp.bip_s_resid_sc(x, beta, p, q)[2]
+    else:
+        # optimize directly on scale
+        F = lambda beta: rsp.arma_s_resid_sc(x, beta, p, q)[0] 
+
+        F_bip = lambda beta: rsp.bip_s_resid_sc(x, beta, p, q)[0] 
+    
+    beta_arma = lsq(F, beta_initial,xtol=5*1e-7,ftol=5*1e-7,method='lm')['x']
+    # different from matlab print('beta_arma: ', beta_arma)
+    # but has lower residuals than matlab print('F(beta_arma): ',rsp.arma_s_resid_sc(x,beta_arma,p,q))
+    beta_bip = lsq(F_bip, beta_initial,xtol=5*1e-7,ftol=5*1e-7,method='lm')['x']
+'''

@@ -2,8 +2,8 @@ import numpy as np
 import robustsp as rsp
 
 def bip_tau_resid_sc(x, beta_hat, p, q):
-    phi_hat = np.array(beta_hat[:p])
-    theta_hat = np.array(beta_hat[p:])
+    phi_hat = beta_hat[:p]
+    theta_hat = beta_hat[p:]
     
     N = len(x)
     
@@ -38,6 +38,8 @@ def bip_tau_resid_sc(x, beta_hat, p, q):
         if np.sum(np.abs(np.roots(-1*np.array([-1, *phi_hat])))>1) \
         or np.sum(np.abs(np.roots(-1*np.array([-1, *theta_hat])))>1):
             a_bip_sc = 10**10
+            x_filt = []
+            a_bip = np.array(x)
         else:    
             if p>=1 and q>=1:
                 # ARMA model
@@ -57,11 +59,10 @@ def bip_tau_resid_sc(x, beta_hat, p, q):
                     a_bip[ii] = x[ii] - phi_hat@(xArr(ii)-apArr(ii)+sigma_hat*rsp.eta(apArr(ii)/sigma_hat))
 
             a_bip_sc = rsp.tau_scale(a_bip[p:])
+            # cleaned signal
+            x_filt = np.array(x)
 
-    # cleaned signal
-    x_filt = np.array(x)
-
-    for ii in range(p,N):
-        x_filt[ii] = x[ii]-a_bip[ii]+sigma_hat*rsp.eta(a_bip[ii]/sigma_hat)
+            for ii in range(p,N):
+                x_filt[ii] = x[ii]-a_bip[ii]+sigma_hat*rsp.eta(a_bip[ii]/sigma_hat)
             
     return a_bip_sc, x_filt, a_bip[p:]
