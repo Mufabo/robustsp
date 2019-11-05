@@ -18,10 +18,12 @@ import random
 from robustsp.AuxiliaryFunctions.madn import madn
 from robustsp.AuxiliaryFunctions.whub import whub
 from robustsp.AuxiliaryFunctions.rhohub import rhohub
+import pkg_resources
 
-def MscaleHUB(y,c=1.345, max_iters = 1000, tol_err = 1e-5,path=None):
-    y = np.asarray(y) # ensure that y is a ndarray
-    
+
+def MscaleHUB(y,c=1.345, max_iters = 1000, tol_err = 1e-5):
+    y = np.array(y) # ensure that y is a ndarray
+    path = pkg_resources.resource_filename('robustsp', 'data/u.mat')
     # initial scale estimate
     sigma_n = madn(y)
     
@@ -33,16 +35,14 @@ def MscaleHUB(y,c=1.345, max_iters = 1000, tol_err = 1e-5,path=None):
     N = len(y)
     
     # consistency with the standard deviation at the Gaussian   
-    if path is not None:
-        import scipy.io
-        u = scipy.io.loadmat(path,struct_as_record=False)
-        u = u['u']
-    else:
-        random.seed(1)
-        u = np.random.randn(10000,1)
+    import scipy.io
+    u = scipy.io.loadmat(path,struct_as_record=False)
+    u = u['u']
+
     delta = np.mean(rhohub(u,c))
     
-    for n in range(max_iters+1):
+    n=0
+    while n<=max_iters:
         w_n = whub(np.abs(y)/sigma_n,c)
         sigma_n_plus1 = np.sqrt(1/(N*delta)*np.sum(w_n * np.square(y)))
         if np.abs(sigma_n_plus1 / (sigma_n -1)) > tol_err:
