@@ -38,4 +38,4 @@ def arma_tau_resid_sc(x, beta_hat, p, q):
                 # AR residuals
                 a[ii] = x[ii]-phi_hat@xArr(ii)
 
-        return rsp.tau_scale(a[p:])#, a[p:]
+        return rsp.tau_scale(a[p:])

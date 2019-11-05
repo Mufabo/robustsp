@@ -34,7 +34,6 @@ def bip_tau_resid_sc(x, beta_hat, p, q):
         a_bip = np.array(x)
         return a_sc_bip
     else:
-        # 2 ok,print(np.sum(np.abs(np.roots(-1*np.array([-1, *phi_hat])))>1))
         if np.sum(np.abs(np.roots(-1*np.array([-1, *phi_hat])))>1) \
         or np.sum(np.abs(np.roots(-1*np.array([-1, *theta_hat])))>1):
             a_bip_sc = 10**10

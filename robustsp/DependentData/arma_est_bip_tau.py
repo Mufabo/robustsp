@@ -34,7 +34,7 @@ result.ma_coeffs_init: robust starting point for BIP-MA(q) tau-estimates
 
 
 '''
-def arma_est_bip_tau(x,p,q,meth=None):
+def arma_est_bip_tau(x,p,q,meth='SLSQP'):
     # Robust starting point by BIP AR-tau approximation
     beta_initial = rsp.robust_starting_point(x,p,q)[0]
     

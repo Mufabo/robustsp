@@ -24,8 +24,8 @@ def robust_starting_point(x,p,q,enf_stat=False,enf_inv=False):
     mod = tsa.SARIMAX(x_filt, order=(p, 0, q), concentrate_scale=True,
                       enforce_stationarity=enf_stat, enforce_invertibility=enf_inv)
     res = mod.fit()
-    beta_initial= -1*res.params
-
+    beta_initial= res.params
+    beta_initial[p:] *= -1
     # Check for stationarity
     poles = lambda x: np.sum(np.abs(np.roots(-1*np.array([-1, *x]))) > 1) 
     
