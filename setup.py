@@ -21,6 +21,7 @@ setup(name='robustsp',
             'numpy',
             'matplotlib',
             'scipy',
-            'setuptools'
+            'setuptools',
+            'statsmodels'
             ],
           zip_safe=False)
