@@ -22,8 +22,7 @@ There are two ways to install this package
 
 Just run the following line in the command line:
 
-    pip install git+https://github.com/Mufabo/robustsp.git
-
+    pip install robustsp
 ### Installation version 2
 
 If you would like to have the source files of the package easily accessible.
