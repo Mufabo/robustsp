@@ -10,3 +10,11 @@
 # Jupyter Notebook
 .ipynb_checkpoints
 *.ipynb
+
+/tests
+
+/build
+
+/dist
+
+/robustsp.egg-info
