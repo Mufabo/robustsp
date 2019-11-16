@@ -80,7 +80,7 @@ rekf['dim'] = parameter['dim']
 # parameters M-estimator
 rekf['break'] = 1e-4
 rekf['max_iters'] = 25
-rekf['singescore'] = 'asymmetric'
+rekf['singlescore'] = 'asymmetric'
 rekf['c1'] = 1.5 # clipping point is c*nu^2
 rekf['c2'] = 3   # clipping point is c*nu^2
 rekf['var_est'] = 0 # uses robust covariance estimation

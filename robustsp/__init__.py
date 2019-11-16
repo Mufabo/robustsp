@@ -29,6 +29,7 @@ from robustsp.Regression.prostate_plot_setup import prostate_plot_setup
 
 from robustsp.RobustFiltering.asymmetric_tanh import asymmetric_tanh
 from robustsp.RobustFiltering.ekf_toa import ekf_toa
+from robustsp.RobustFiltering.ekf_toa_Masreliez import ekf_toa_Masreliez
 from robustsp.RobustFiltering.ekf_toa_robust import ekf_toa_robust
 from robustsp.RobustFiltering.examples.Auxiliary.markov_chain_book import markov_chain_book
 from robustsp.RobustFiltering.examples.Auxiliary.create_environment_book import create_environment_book
@@ -67,5 +68,9 @@ from robustsp.SpectrumEstimation.Auxiliary.order_wk import order_wk
 from robustsp.SpectrumEstimation.Auxiliary.split_into_prime import split_into_prime
 
 from robustsp.SpectrumEstimation.spec_arma_est_bip_tau import spec_arma_est_bip_tau
+from robustsp.SpectrumEstimation.spec_arma_est_bip_s import spec_arma_est_bip_s
+from robustsp.SpectrumEstimation.spec_arma_est_bip_mm import spec_arma_est_bip_mm
+from robustsp.SpectrumEstimation.repeated_median_filter import repeated_median_filter
+from robustsp.SpectrumEstimation.biweight_filter import biweight_filter
 
 import numpy as np

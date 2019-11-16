@@ -17,7 +17,7 @@ import numpy as np
 % sigma_hat: BIP tau-scale estimate of the innovations
 '''
 
-def spec_arma_est_bip_tau(x,p,q):
+def spec_arma_est_bip_s(x,p,q):
     x = x - np.median(x)
     
     N = len(x)
