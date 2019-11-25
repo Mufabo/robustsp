@@ -18,3 +18,7 @@
 /dist
 
 /robustsp.egg-info
+
+_build
+_static
+_templates
