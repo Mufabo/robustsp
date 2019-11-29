@@ -4,6 +4,13 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+# Import the package to document:
+import robustsp
+
+# Automatically generate documentation pages
+from gendocs import Generator
+Generator().DocumentPackages(wonderfulpackage)
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
