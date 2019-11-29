@@ -10,7 +10,9 @@ Welcome to robustsp's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+.. image:: https://img.shields.io/badge/docs%20by-gendocs-blue.svg
+   :target: https://gendocs.readthedocs.io/en/latest/
+   :alt: Documentation Built by gendocs
 
 Indices and tables
 ==================
