@@ -5,14 +5,26 @@
 
 Welcome to robustsp's documentation!
 ====================================
+robustsp is the python package dedicated to the textbook
+"Robust Statistics for Signal Processing" (Cambridge University Press, 2018) by Zoubir A. M. , Koivunen V. , Ollila E. and Muma M.  
+
+[1] https://github.com/RobustSP/toolbox
+
+Contents
+========
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :numbered:
 
-.. image:: https://img.shields.io/badge/docs%20by-gendocs-blue.svg
-   :target: https://gendocs.readthedocs.io/en/latest/
-   :alt: Documentation Built by gendocs
+   locandscale/Location and Scale
+   reg/Regression
+   cova/Covariance
+   robfil/Robustfiltering
+   depdat/DependentData
+   spec/SpectrumEstimation
+   auxi/Auxilliary
+   
 
 Indices and tables
 ==================
