@@ -1,16 +1,16 @@
-MLocHUB
+MLocTUK
 =======
 
-MLocHUB computes Huber's M-estimate of
+MLocTUK computes Tukeys's M-estimate of
 location, i.e.,
 
 .. math::
-   \hat{\mu}  = arg min_{\mu} \sum_{i}  \rho_{HUB}(y_{i} - \mu)
+   \hat{\mu}  = arg min_{\mu} \sum_{i}  \rho_{TUK}(y_{i} - \mu)
     
 INPUTS: 
 ^^^^^^   
       *  y:    		real valued data vector of size N x 1
-      *  c: 		tuning constant c>=0 . default = 1.345
+      *  c: 		tuning constant c>=0 . default = 4.685
             		default tuning for 95 percent efficiency under 
             		the Gaussian model end
       *  max_iters: 	Number of iterations. default = 1000
@@ -18,7 +18,7 @@ INPUTS:
    
 OUTPUT:  
 ^^^^^^ 
-          mu_hat: Hubers's M-estimate of location
+          mu_hat: Tukey's M-estimate of location
 
 EXAMPLES:
 ^^^^^^^^
@@ -27,8 +27,5 @@ EXAMPLES:
 
    x = np.array([1, 2, 3, 4]) 
    c = 5    
-   MLocHUB(x) 
-   MLocHUB(x, c) 
-
-
-
+   MLocTUK(x) 
+   MLocTUK(x, c)

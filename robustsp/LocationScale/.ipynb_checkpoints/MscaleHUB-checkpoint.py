@@ -1,7 +1,6 @@
 '''
 Mscale_HUB computes Huber's M-estimate of scale.
 
-
    INPUTS: 
            y: real valued data vector of size N x 1
            c: tuning constant c>=0 . default = 1.345
