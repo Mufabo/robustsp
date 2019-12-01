@@ -15,7 +15,7 @@
 import numpy as np
     
 def asymmetric_tanh(Sigx,c1,c2,x1):
-    Sig = np.asarray(Sigx)
+    Sig = np.asarray(Sigx) # np.array maybe better
     phi = np.zeros(np.shape(Sig))
     phi_point = np.zeros(np.shape(Sig))
     
