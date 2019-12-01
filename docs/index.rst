@@ -8,7 +8,14 @@ Welcome to robustsp's documentation!
 robustsp is the python package dedicated to the textbook
 "Robust Statistics for Signal Processing" (Cambridge University Press, 2018) by Zoubir A. M. , Koivunen V. , Ollila E. and Muma M.  
 
-[1] https://github.com/RobustSP/toolbox
+
+Link to the Github repo:
+
+[1] https://github.com/Mufabo/robustsp
+
+If you encounter any bug in the code or a typo, formatting error etc. in the docs,
+please raise an issue on github.
+
 
 Contents
 ========
