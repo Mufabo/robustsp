@@ -1,2 +1,5 @@
 Covariance
 ==========
+Mscat
+signcm
+spatmed

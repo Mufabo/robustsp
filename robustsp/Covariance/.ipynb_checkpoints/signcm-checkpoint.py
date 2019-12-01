@@ -6,6 +6,8 @@ INPUT
           observation, and each column represents one variable.
    center: logical (true/false). If true, then center the data using
            spatial median. Default is false
+   EPS: numeric, lower bound to avoid for floats to avoid divisions by zeros
+        Default = 1e-06
 OUTPUT: 
 spatial sign covariance matrix
 and spatial median (computed only if center = true)
