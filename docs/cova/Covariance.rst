@@ -1,5 +1,8 @@
 Covariance
 ==========
-Mscat
-signcm
-spatmed
+
+.. toctree::
+
+   Mscat
+   signcm
+   spatmed
