@@ -15,7 +15,7 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :numbered:
+   :numbered: 1
 
    locandscale/Location and Scale
    reg/Regression
