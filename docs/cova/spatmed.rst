@@ -22,12 +22,12 @@ Examples
 
 .. code-block:: python
 
-import robustsp as rsp
-import numpy as np
+   import robustsp as rsp
+   import numpy as np
 
-X =  np.asarray\
-    ([[2,     3],
-      [4,     6],
-      [9,     8]])
+   X =  np.asarray\
+       ([[2,     3],
+         [4,     6],
+         [9,     8]])
 
-rsp.spatmed(X)
+   rsp.spatmed(X)

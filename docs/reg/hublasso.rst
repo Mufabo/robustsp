@@ -7,27 +7,27 @@ using Huber's loss function
 Inputs
 ^^^^
 
-     *  yx: Numeric 1d-array of size N (output,respones)
-     *  Xx: Numeric 2d-array of size N x p (inputs,predictors,features). 
+*  yx	: Numeric 1d-array of size N (output,respones)
+*  Xx	: Numeric 2d-array of size N x p (inputs,predictors,features). 
           Each row represents one observation, and each column represents 
           one predictor
-  * lambd: positive penalty parameter value
-  *    b0: numeric 1d-array initial start  of the regression vector
-  *  sig0: numeric positive scalar, initial scale estimate.
-  *  c: Threshold constant of Huber's loss function 
-  * reltol: Convergence threshold. Terminate when successive 
+* lambd	: positive penalty parameter value
+* b0	: numeric 1d-array initial start  of the regression vector
+* sig0	: numeric positive scalar, initial scale estimate.
+*  c	: Threshold constant of Huber's loss function 
+* reltol: Convergence threshold. Terminate when successive 
           estimates differ in L2 norm by a rel. amount less than reltol.
           Default is 1.0e-5
-  * printitn: print iteration number (default = 0, no printing)
-  * iterMAX:  default = 500, maximum number of iterations
+* printitn: print iteration number (default = 0, no printing)
+* iterMAX:  default = 500, maximum number of iterations
 
 
 Outputs
 ^^^^
 
-     * b0: 1d-array regression coefficient vector estimate
-    * sig0: scalar, estimate of the scale 
-   * psires: 1d-array, pseudoresiduals
+* b0	: 1d-array regression coefficient vector estimate
+* sig0	: scalar, estimate of the scale 
+* psires: 1d-array, pseudoresiduals
 
 Examples
 ^^^^

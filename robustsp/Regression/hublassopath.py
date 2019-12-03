@@ -34,8 +34,8 @@ import robustsp as rsp
 
 def hublassopath(yx,Xx,c=None,intcpt=True,eps=10**-3,L=120,reltol=1e-5,printitn=0):
     # ensure that y is Nx1 and not just N and proper formats
-    y = np.copy(np.asarray(yx))
-    X = np.copy(np.asarray(Xx))
+    y = np.array(yx) #np.copy(np.asarray(yx))
+    X = np.array(Xx) #np.copy(np.asarray(Xx))
     y = y if not len(y.shape)==2 else y.flatten()
     
     n,p = X.shape
