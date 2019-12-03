@@ -3,7 +3,7 @@ psihub
 
 Huber's score function
 
-.. math::  \psi (x) = \begin(cases) x,~|x| \le c \\ sign(x)c,~else \end(cases)
+.. math::  \psi (x) = \begin{cases} x,~|x| \le c \\ sign(x)c,~else \end{cases}
 
 Input
 ^^^^
