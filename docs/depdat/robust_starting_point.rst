@@ -23,4 +23,4 @@ Example
 
 Note
 ^^^^
-Results different from matlab
+Results different from matlab. Uses sarimax from statsmodels.
