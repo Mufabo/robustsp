@@ -11,7 +11,7 @@ Input
 * x		: numeric 1d-array, the data
 * p		: scalar int, autoregressive order
 * q		: scalar int, moving-average order
-
+* meth 		: string, method used for optimization in scipy.optimize.minimize, default = 'SLSQP'
 
 Output
 ^^^^
