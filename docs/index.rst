@@ -16,6 +16,9 @@ Link to the Github repo:
 If you encounter any bug in the code or a typo, formatting error etc. in the docs,
 please raise an issue on github.
 
+A notebook with examples for each chapter can be found on google colab:
+
+https://colab.research.google.com/drive/1dMz4MXhwz6eKbx-hfbaMduUvqIipNSPB
 
 Contents
 ========
