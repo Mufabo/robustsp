@@ -19,8 +19,7 @@ result.cleaned signal: outlier cleaned signal using BIP-ARMA(p,q) predictions
 result.ar_coeffs_init: robust starting point for BIP-AR(p) tau-estimates
 result.ma_coeffs_init: robust starting point for BIP-MA(q) tau-estimates
 
-  The function "robust_starting_point" calls "armax" from Matlab System Identification
-  Toolbox to compute classical ARMA parameter estimate based on cleaned
+  The function "robust_starting_point" calls "sarimax" from statsmodels to compute classical ARMA parameter estimate based on cleaned
   data. Replace highlighted code by a different (nonrobust) ARMA parameter estimator if you
   do not have the toolbox.
 
