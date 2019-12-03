@@ -4,6 +4,7 @@ Auxilliary
 .. toctree::
 
    madn
+   propform
    psihub
    rhohub
    rhotuk
