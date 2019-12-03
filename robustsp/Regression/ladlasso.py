@@ -24,8 +24,8 @@ from robustsp import *
 
 def ladlasso(yx,Xx,lambd,b0=None,intcpt=True,reltol=1.0e-8,printitn=0,ITERMAX = 2000):
 
-    y = np.copy(np.asarray(yx))
-    X = np.copy(np.asarray(Xx))
+    y = np.array(yx) #np.copy(np.asarray(yx))
+    X = np.array(Xx) #np.copy(np.asarray(Xx))
 
     N,p = X.shape
 

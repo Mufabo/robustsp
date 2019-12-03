@@ -1,7 +1,7 @@
 '''
 [b1, sig1, iter] = hubreg(y,X,...)
 hubreg computes the joint M-estimates of regression and scale using 
-Huber's criterion. Function worsk for both real- and complex-valued data.
+Huber's criterion. Function works for both real- and complex-valued data.
 %
 INPUT: 
        yx: Numeric data vector of size N (output, respones)
