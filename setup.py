@@ -1,6 +1,9 @@
 from setuptools import setup, find_packages
 
 import sys
+import os
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 if sys.version_info.major != 3:
     print('This Python is only compatible with Python 3, but you are running '
@@ -11,6 +14,7 @@ if sys.version_info.major != 3:
 setup(name='robustsp',
           version='0.1',
           description='library for robust signal processing',
+	  long_description=read('README'),
           url='https://github.com/Mufabo/robustsp',
           author='M. Fatih Bostanci',
           author_email='fatih.bostanci@hotmail.de',
