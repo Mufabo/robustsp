@@ -13,7 +13,7 @@ if sys.version_info.major != 3:
 
 
 setup(name='robustsp',
-          version='0.1',
+          version='0.1.1',
           description='library for robust signal processing',
 	  long_description=read('README.md'),
           url='https://github.com/Mufabo/robustsp',
