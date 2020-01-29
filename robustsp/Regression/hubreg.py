@@ -28,8 +28,8 @@ import robustsp as rsp
 def hubreg(yx,Xx,c=None,sig0=None,b0=None,printitn=0,ITERMAX = 2000,ERRORTOL = 1e-5):
 
     # ensure that y is Nx1 and not just N and proper formats
-    y = np.copy(np.asarray(yx))
-    X = np.copy(np.asarray(Xx))
+    y = np.array(yx)#np.copy(np.asarray(yx))
+    X = np.array(Xx)#np.copy(np.asarray(Xx))
     y = y if not len(y.shape)==2 else y.flatten()
     
     n,p = X.shape
