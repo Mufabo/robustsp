@@ -42,6 +42,8 @@ def hubreg(yx,Xx,c=None,sig0=None,b0=None,printitn=0,ITERMAX = 2000,ERRORTOL = 1
     
     if b0 is None:
         b0 = np.linalg.lstsq(X[range(len(y)),:],y,rcond=None)[0]
+    else:
+       b0 = b0.copy()
         
     if sig0 is None:
         sig0 = np.linalg.norm(y-X@b0)/np.sqrt(n-p)
@@ -55,7 +57,7 @@ def hubreg(yx,Xx,c=None,sig0=None,b0=None,printitn=0,ITERMAX = 2000,ERRORTOL = 1
         qn = chi2.cdf(2*csq,2)
         alpha = chi2.cdf(2*csq,4)+csq*(1-qn) # consistency factor for scale
         
-    Z = np.linalg.pinv(X)[0] # svd <1e-15 are set to zero
+    Z = np.linalg.pinv(X) #[0] # svd <1e-15 are set to zero
     con = np.sqrt((n-p)*alpha)
 
     i=1
