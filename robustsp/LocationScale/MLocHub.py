@@ -27,7 +27,7 @@ def MLocHUB(y,c=1.345, max_iters = 1000, tol_err = 1e-5):
     # previously computed scale estimate
     sigma_0 = madn(y)
     # initial robust location estimate 
-    mu_n = np.median(y);
+    mu_n = np.median(y)
     # computes huber weights
     
     for n in range(max_iters+1):
