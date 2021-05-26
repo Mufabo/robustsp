@@ -35,5 +35,5 @@ If you would like to have the source files of the package easily accessible.
 
 ## Examples
 
-[Portfolio with examples for each chapter on google colab](https://colab.research.google.com/drive/1dMz4MXhwz6eKbx-hfbaMduUvqIipNSPB)
+The examples includeing plots are all in the robustsp.ipynb file in the main folder.
 
