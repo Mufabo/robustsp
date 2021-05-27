@@ -35,7 +35,7 @@ If you would like to have the source files of the package easily accessible.
 
 ## Examples
 
-The examples includeing plots are all in the robustsp.ipynb file in the main folder.
+The examples includeing plots are all in the examples.ipynb file in the main folder.
 
-https://github.com/Mufabo/robustsp/blob/master/robustsp.ipynb
+https://github.com/Mufabo/robustsp/blob/master/examples.ipynb
 
