@@ -38,7 +38,7 @@ def ladlassopath(yx,Xx,intcpt=True,eps=10**-3, L= 120,reltol=1e-6,printitn=0):
     hasattr(L, "__iter__"):
         raise ValueError('L should be a real, positive, scalar')
 
-    y = np.array(y) #np.copy(np.asarray(yx))
+    y = np.array(yx) #np.copy(np.asarray(yx))
     y = y if not len(y.shape)==2 else y.flatten() # ensure that y is Nx1 and not just N
 
     X = np.array(Xx) #np.copy(np.asarray(Xx))
