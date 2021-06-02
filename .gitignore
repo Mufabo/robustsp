@@ -8,8 +8,9 @@
 /*.egg-info
 
 # Jupyter Notebook
-.ipynb_checkpoints
+*/.ipynb_checkpoints
 *.ipynb
+*/__pychache__
 
 /tests
 
