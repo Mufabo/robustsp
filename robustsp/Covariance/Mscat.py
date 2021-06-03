@@ -42,7 +42,7 @@ def Mscat(X, loss, losspar=None,invCx=None,printitn=0,MAX_ITER = 1000,EPS = 1.0e
         sp.integrate.quad(sfun,0,np.inf)[0]
         return ((v+p)/p)*q #consistency factor
     
-    X = np.asarray(X);
+    X = np.asarray(X)
     n,p = X.shape
     realdata = np.isrealobj(X)
 
